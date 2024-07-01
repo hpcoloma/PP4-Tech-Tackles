@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>All Tickets</h1>
+<ul>
+    {% for ticket in tickets %}
+        <li>
+            {{ ticket.subject }} - {{ ticket.status}}
+            <a href="{% url 'update_ticket_status' ticket.id %}">Update Status</a>
+            <a href="{% url 'delete_ticket' ticket.id %}">Delete</a>
+            <a href="{% url 'add_comment' ticket.id %}">Comment</a>
+        </li>
+</ul>
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Update Ticket Status</h1>
+<form method="post">
+    {% csrf_token %}
+    <select name="status">
+        <option value="Open" {% if ticket.status == 'Open' %}selected{% endif %}>Open</option>
+        <option value="In Progress" {% if ticket.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+        <option value="Closed" {% if ticket.status == 'Closed' %}selected{% endif %}>Closed</option>
+    </select>
+    <button type="submit">Update</button>   
+</form>
+{% endblock %}

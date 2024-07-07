@@ -1,6 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Ticket
+
 
 # Create your views here.
-def my_blog(request):
-    return HttpResponse("Hello, Blog!")
+class TicketList(generic.ListView):
+    model = Ticket
+    
+
+
+

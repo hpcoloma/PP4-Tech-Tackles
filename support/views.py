@@ -1,14 +1,25 @@
-from django.shortcuts import render
-from django.views import generic
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView
 from .models import Ticket
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 # Create your views here.
-class TicketList(generic.ListView):
-    # model = Ticket
-    queryset = Ticket.objects.all()
-    template_name = "support/index.html"
-    paginated_by = 5
+def home_page(request):
+    if request.user.is_authenticated:
+        return redirect('ticket_list')
+    return render(request, 'support/index.html')
+
+class TicketListView(LoginRequiredMixin, ListView):
+    model = Ticket
+    template_name = 'support/ticket_list.html'
+
+    def get_queryset(self):
+        if self.request.user == 'tech_support':
+            return Ticket.objects.all()
+        else:
+            return Ticket.objects.filter(user=self.request.user)
     
 
 

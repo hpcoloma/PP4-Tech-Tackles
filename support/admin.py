@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Ticket, Comment
+from .models import Ticket, Comment, Profile
 from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Ticket)

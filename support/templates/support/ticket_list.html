@@ -8,7 +8,7 @@
 <ul>
     {% for ticket in object_list %}
         <li>
-            {{ ticket.subject }} - {{ ticket.status }}
+            <a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket.subject }}</a> - {{ ticket.status }}
         </li>
     {% endfor %}
 </ul>

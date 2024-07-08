@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Ticket ID: {{ ticket.ticket_id }}
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Submitted by: {{ ticket.user }}</li>
+      <li class="list-group-item">Date: {{ ticket.created_on }}</li>
+      <li class="list-group-item">Status: {{ ticket.status }}</li>
+      <li class="list-group-item">Details: {{ ticket.description|safe }}</li>
+    </ul>
+  </div>
+
+{% endblock %}

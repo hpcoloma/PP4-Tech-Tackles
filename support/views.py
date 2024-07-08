@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Ticket
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -20,6 +20,12 @@ class TicketListView(LoginRequiredMixin, ListView):
             return Ticket.objects.all()
         else:
             return Ticket.objects.filter(user=self.request.user)
+
+class TicketDetailView(LoginRequiredMixin, DetailView):
+    model = Ticket
+    template_name = 'support/ticket_detail.html'
+
+    
     
 
 

@@ -1,10 +1,11 @@
 from . import views
 from django.urls import path
-from support.views import home_page, TicketListView
+from support.views import home_page, TicketListView, TicketDetailView
 
 urlpatterns = [
     path('', views.home_page, name='home'),
     path('tickets/', TicketListView.as_view(), name='ticket_list'),
+    path('ticket/<int:pk>/', TicketDetailView.as_view(), name='ticket_detail'),
 ]
 
 

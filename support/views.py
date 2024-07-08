@@ -16,7 +16,7 @@ class TicketListView(LoginRequiredMixin, ListView):
     template_name = 'support/ticket_list.html'
 
     def get_queryset(self):
-        if self.request.user == 'tech_support':
+        if self.request.user.is_staff:
             return Ticket.objects.all()
         else:
             return Ticket.objects.filter(user=self.request.user)

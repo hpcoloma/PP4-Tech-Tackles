@@ -17,9 +17,9 @@ class TicketListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         if self.request.user.is_staff:
-            return Ticket.objects.all()
+            return Ticket.objects.all().order_by('ticket_id')
         else:
-            return Ticket.objects.filter(user=self.request.user)
+            return Ticket.objects.filter(user=self.request.user).order_by('ticket_id')
 
 class TicketDetailView(LoginRequiredMixin, DetailView):
     model = Ticket

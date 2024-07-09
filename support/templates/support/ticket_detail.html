@@ -9,7 +9,28 @@
       <li class="list-group-item">Submitted by: {{ ticket.user }}</li>
       <li class="list-group-item">Date: {{ ticket.created_on }}</li>
       <li class="list-group-item">Status: {{ ticket.status }}</li>
+      <li class="list-group-item">Assigned To: {{ ticket.status }}</li>
       <li class="list-group-item">Details: {{ ticket.description|safe }}</li>
+      <li class="list-group-item">Comments: 
+        <div class="card mb-4">
+          <div class="card-body">
+              <ul>
+                {% for comment in ticket.comments.all %}
+                    <li>{{ comment.comment }} </li>
+                
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                      {{ comment.user.username }}
+                    </div>
+                </div>
+                {% endfor %}
+              </ul>
+
+            </div>
+          </div>
+
+      </li>     
+      
     </ul>
   </div>
 

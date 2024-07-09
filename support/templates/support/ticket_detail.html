@@ -12,25 +12,30 @@
       <li class="list-group-item">Assigned To: {{ ticket.status }}</li>
       <li class="list-group-item">Details: {{ ticket.description|safe }}</li>
       <li class="list-group-item">Comments: 
-        <div class="card mb-4">
-          <div class="card-body">
+        <!-- <div class="card mb-4">
+          <div class="card-body"> -->
               <ul>
                 {% for comment in ticket.comments.all %}
                     <li>{{ comment.comment }} </li>
-                
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                      {{ comment.user.username }}
-                    </div>
-                </div>
+                <!-- <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center"> -->
+                      {{ comment.user.username }} on {{ comment.created_on }}
+                    <!-- </div>
+                </div> -->
+                <br>
                 {% endfor %}
               </ul>
-
-            </div>
-          </div>
-
+            <!-- </div>
+          </div> -->
       </li>     
-      
+      <!-- <li class="list-group-item">Add Comments: -->
+          <form method="post" action="{% url 'add_comment' ticket.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Comment</button>
+          </form>
+      <!-- </li>  -->
+
     </ul>
   </div>
 

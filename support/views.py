@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Ticket
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .forms import CommentForm
-
+from .forms import CommentForm, TicketForm
 
 
 # Create your views here.
@@ -12,6 +11,7 @@ def home_page(request):
     if request.user.is_authenticated:
         return redirect('ticket_list')
     return render(request, 'support/index.html')
+
 
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
@@ -23,9 +23,21 @@ class TicketListView(LoginRequiredMixin, ListView):
         else:
             return Ticket.objects.filter(user=self.request.user).order_by('ticket_id')
 
+
 class TicketDetailView(LoginRequiredMixin, DetailView):
     model = Ticket
     template_name = 'support/ticket_detail.html'
+    
+
+class TicketCreateView(LoginRequiredMixin, CreateView):
+    model = Ticket
+    form_class = TicketForm
+    template_name = 'support/ticket_form.html'
+
+    def form_valid(self, request, *args, **kwargs):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 @login_required
 def add_comment(request, pk):

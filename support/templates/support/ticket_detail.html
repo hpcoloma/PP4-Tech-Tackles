@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 30rem;">
     <div class="card-header">
       Ticket ID: {{ ticket.ticket_id }}
     </div>
@@ -10,31 +10,52 @@
       <li class="list-group-item">Date: {{ ticket.created_on }}</li>
       <li class="list-group-item">Status: {{ ticket.status }}</li>
       <li class="list-group-item">Assigned To: {{ ticket.status }}</li>
-      <li class="list-group-item">Details: {{ ticket.description|safe }}</li>
-      <li class="list-group-item">Comments: 
-        <!-- <div class="card mb-4">
-          <div class="card-body"> -->
-              <ul>
-                {% for comment in ticket.comments.all %}
-                    <li>{{ comment.comment }} </li>
-                <!-- <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center"> -->
-                      {{ comment.user.username }} on {{ comment.created_on }}
-                    <!-- </div>
-                </div> -->
-                <br>
-                {% endfor %}
-              </ul>
-            <!-- </div>
-          </div> -->
-      </li>     
-      <!-- <li class="list-group-item">Add Comments: -->
+      <li class="list-group-item">Details:<br>{{ ticket.description|safe }}</li>
+      
+      <!-- Displaying count of comments
+      <div class="row">
+        <div class="col-12">
+          <strong class="text-secondary">
+            <i class="far fa-comments"></i> {{ comment_count }}
+          </strong>
+        </div>
+        <div class="col-12">
+          <hr>
+        </div>
+      </div> -->
+      
+      <!-- Displaying Comments -->
+  <div class="row">
+    <div class="col-md-12 card mb-4  mt-3 ">
+      <h3>Comments:</h3>
+      <div class="card-body">
+        <!-- We want a for loop inside the empty control tags
+          to iterate through each comment in comments -->
+        {% for comment in ticket.comments.all %}
+        <div class="p-2 comments">         
+              <p class="font-weight-bold">{{ comment.user.username }}
+                <span class="font-weight-normal">
+                  {{ comment.created_on }}
+                </span> wrote:
+              </p>
+            <div id="comment{{ comment.id }}">
+              {{ comment.comment | linebreaks }}
+            </div>
+        </div>
+        <!-- Our for loop ends here -->
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+                
+      
           <form method="post" action="{% url 'add_comment' ticket.pk %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Add Comment</button>
           </form>
-      <!-- </li>  -->
+     
 
     </ul>
   </div>

@@ -1,63 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
+{% load crispy_forms_tags %}
 
-<div class="card" style="width: 30rem;">
-    <div class="card-header">
-      Ticket ID: {{ ticket.ticket_id }}
+<div class="container mt-4">
+    <div class="card mb-4" style="width: 100%;">
+        <div class="card-header">
+            Ticket ID: {{ ticket.ticket_id }}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Submitted by: {{ ticket.user }}</li>
+            <li class="list-group-item">Date: {{ ticket.created_on }}</li>
+            <li class="list-group-item">Status: {{ ticket.status }}</li>
+            <li class="list-group-item">Assigned To: {{ ticket.assigned_to }}</li>
+            <li class="list-group-item">Details:<br>{{ ticket.description|safe }}</li>
+        </ul>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Submitted by: {{ ticket.user }}</li>
-      <li class="list-group-item">Date: {{ ticket.created_on }}</li>
-      <li class="list-group-item">Status: {{ ticket.status }}</li>
-      <li class="list-group-item">Assigned To: {{ ticket.status }}</li>
-      <li class="list-group-item">Details:<br>{{ ticket.description|safe }}</li>
-      
-      <!-- Displaying count of comments
-      <div class="row">
-        <div class="col-12">
-          <strong class="text-secondary">
-            <i class="far fa-comments"></i> {{ comment_count }}
-          </strong>
+
+    <!-- Displaying Comments -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>Comments:</h4>
+            <ul>
+                {% for comment in ticket.comments.all %}
+                <li>{{ comment.user.username }} - {{ comment.created_on }} wrote:
+                    {{ comment.comment|linebreaks }}</li>
+                {% endfor %}
+            </ul>
         </div>
-        <div class="col-12">
-          <hr>
-        </div>
-      </div> -->
-      
-      <!-- Displaying Comments -->
-  <div class="row">
-    <div class="col-md-12 card mb-4  mt-3 ">
-      <h3>Comments:</h3>
-      <div class="card-body">
-        <!-- We want a for loop inside the empty control tags
-          to iterate through each comment in comments -->
-        {% for comment in ticket.comments.all %}
-        <div class="p-2 comments">         
-              <p class="font-weight-bold">{{ comment.user.username }}
-                <span class="font-weight-normal">
-                  {{ comment.created_on }}
-                </span> wrote:
-              </p>
-            <div id="comment{{ comment.id }}">
-              {{ comment.comment | linebreaks }}
-            </div>
-        </div>
-        <!-- Our for loop ends here -->
-        {% endfor %}
-      </div>
     </div>
-  </div>
+
+    <!-- Creating New Comments -->
+    <div class="card mb-4">
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <h3>Leave a comment:</h3>
+            <p>Posting as: {{ user.username }}</p>
+            <form id="commentForm" method="post" style="margin-top: 1.3em;" action="{% url 'add_comment' ticket.pk %}">
+                {{ comment_form|crispy }}
+                {% csrf_token %}
+                <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+            </form>
+            {% else %}
+            <p>Log in to leave a comment</p>
+            {% endif %}
+        </div>
+    </div>
 </div>
-                
-      
-          <form method="post" action="{% url 'add_comment' ticket.pk %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Add Comment</button>
-          </form>
-     
-
-    </ul>
-  </div>
 
 {% endblock %}

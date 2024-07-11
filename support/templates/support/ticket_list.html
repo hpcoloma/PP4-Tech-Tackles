@@ -2,16 +2,17 @@
 
 {% block content %}
 
+<div class="container mt-4">
+    <h1>TICKET LIST</h1>
+    <a href="{% url 'ticket_create' %}">Create Ticket</a>
 
-<h1>TICKET LIST</h1>
-<a href="{% url 'ticket_create' %}">Create Ticket</a>
-
-<ul>
-    {% for ticket in object_list %}
-        <li>
-            <a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket.ticket_id }} </a>&emsp; {{ ticket.status }} &emsp;{{ ticket.subject }}
-        </li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for ticket in object_list %}
+            <li>
+                <a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket.ticket_id }} </a>&emsp; {{ ticket.status }} &emsp;{{ ticket.subject }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
     
 {% endblock %}

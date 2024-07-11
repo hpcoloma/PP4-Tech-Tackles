@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # Create your models here.
 # User profile model
@@ -33,8 +34,22 @@ class Ticket(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
+    def save(self, *args, **kwargs):
+        if not self.ticket_id:
+            date_str = datetime.now().strftime('%Y-%m%d')
+            latest_ticket = Ticket.objects.filter(ticket_id__startswith=f'TT-{date_str}').order_by('created_on').last()
+            if latest_ticket:
+                last_ticket_number = int(latest_ticket.ticket_id[-3:])
+                self.ticket_id = f'TT-{date_str}-{last_ticket_number + 1:03d}'
+            else:
+                self.ticket_id = f'TT-{date_str}-001'
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"{self.ticket_id} - {self.subject} by {self.user}"
+        return self.ticket_id
+
+    # def __str__(self):
+    #     return f"{self.ticket_id} - {self.subject} by {self.user}"
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter") # Many to one

@@ -3,14 +3,13 @@
 body {
     background: #ffffff no-repeat;
     height: 100%;
-    background-size: cover;
-    overflow: hidden;
-    background-position: center;
-    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    font-family: "Titillium Web", sans-serif;
 }
 
 .brand {
-    font-family: "Titillium Web", sans-serif
     font-size: 1.4rem;
     font-weight: 700;
     color: #4A4A4F;
@@ -34,6 +33,7 @@ body {
 
 .main-bg {
     background-color: #F9FAFC;
+    overflow: auto;
 }
 
 .card {
@@ -165,4 +165,8 @@ body {
 
 .approval {
     color: rgb(222, 146, 168);
+}
+
+.footer {
+    flex-shrink: 0;
 }

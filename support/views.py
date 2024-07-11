@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
-from .models import Ticket
+from .models import Ticket, Comment
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .forms import CommentForm, TicketForm
@@ -27,14 +28,25 @@ class TicketListView(LoginRequiredMixin, ListView):
 class TicketDetailView(LoginRequiredMixin, DetailView):
     model = Ticket
     template_name = 'support/ticket_detail.html'
+    # comment_form = CommentForm()
+
+  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ticket = self.get_object()
+        context['comments'] = ticket.comments.all().order_by('-created_on')
+        context['comment_form'] = CommentForm()
+        return context
+
     
 
 class TicketCreateView(LoginRequiredMixin, CreateView):
     model = Ticket
     form_class = TicketForm
     template_name = 'support/ticket_form.html'
+    success_url = reverse_lazy('ticket_list')
 
-    def form_valid(self, request, *args, **kwargs):
+    def form_valid(self, form, *args, **kwargs):
         form.instance.user = self.request.user
         return super().form_valid(form)
 

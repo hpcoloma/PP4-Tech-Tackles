@@ -35,7 +35,8 @@ class Ticket(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        if not self.ticket_id:
+        if not self.pk:  # Check if it's a new ticket
+            # Generate ticket_id logic as before
             date_str = datetime.now().strftime('%Y-%m%d')
             latest_ticket = Ticket.objects.filter(ticket_id__startswith=f'TT-{date_str}').order_by('created_on').last()
             if latest_ticket:

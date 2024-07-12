@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Ticket, Comment
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -65,6 +65,35 @@ def add_comment(request, pk):
     else:
         form = CommentForm()
     return render(request, 'support/add_comment.html', {'form': form})
+
+
+class TicketUpdateView(LoginRequiredMixin, UpdateView):
+    model = Ticket
+    form_class = TicketForm
+    template_name = 'support/ticket_form.html'
+    success_url = reverse_lazy('ticket_list') # Redirect to ticket list after successful update
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Ticket updated sucessfully.')
+        return super().form_valid(form)
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_staff:
+            return Ticket.objects.all()
+        return Ticket.objects.filter(user=self.request.user)
+
+
+class TicketDeleteView(LoginRequiredMixin, DeleteView):
+    model = Ticket
+    template_name = 'support/ticket_confirm_delete.html'
+    success_url = reverse_lazy('ticket_list')
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_staff:
+            return queryset
+        return queryset.filter(user=self.request.user)
 
     
     

@@ -12,3 +12,6 @@ class TicketForm(forms.ModelForm):
         model = Ticket
         fields = ['subject','description']
     
+    def clean(self):
+        cleaned_data = super().clean()
+    

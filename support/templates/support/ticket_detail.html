@@ -21,10 +21,12 @@
 
     <!--Edit and Delete options -->
     {% if user == ticket.user or user.is_staff %}
-    <div class="mb-4">
-        <a href="{% url 'ticket_edit' ticket.pk %}" class="btn btn-primary">Edit Ticket</a>
-        <button type="button" class="btn btn-danger delete-button" data-ticket-id="{{ ticket.pk }}">Delete Ticket</button>
-    </div>
+        {% if ticket.status == 'Open' %}
+            <div class="mb-4">
+                <a href="{% url 'ticket_edit' ticket.pk %}" class="btn btn-primary">Edit Ticket</a>
+                <button type="button" class="btn btn-danger delete-button" data-ticket-id="{{ ticket.pk }}">Delete Ticket</button>
+            </div>
+        {% endif %}
     {% endif %}    
 
     <!-- Displaying Comments -->

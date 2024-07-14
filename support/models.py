@@ -49,8 +49,6 @@ class Ticket(models.Model):
     def __str__(self):
         return self.ticket_id
 
-    # def __str__(self):
-    #     return f"{self.ticket_id} - {self.subject} by {self.user}"
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter") # Many to one

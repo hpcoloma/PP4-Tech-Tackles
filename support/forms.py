@@ -14,4 +14,24 @@ class TicketForm(forms.ModelForm):
     
     def clean(self):
         cleaned_data = super().clean()
-    
+
+
+class TicketUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        fields = ['subject', 'description', 'status']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+        # Determine field permissions based on user role
+        if self.user.is_staff:
+            # Staff can change status only
+            self.fields['subject'].disabled = True
+            self.fields['description'].disabled = True
+        else:
+            # Regular users can edit subject and description only
+            self.fields['status'].disabled = True
+
+            

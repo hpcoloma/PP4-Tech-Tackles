@@ -10,10 +10,11 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Submitted by: {{ ticket.user }}</li>
             <li class="list-group-item">Created On: {{ ticket.created_on }}</li>
-            {% if instance.pk %}
+            {% if ticket.updated_on != ticket.created_on %}
             <li class="list-group-item">Updated On: {{ ticket.updated_on }}</li>
             {% endif %}
             <li class="list-group-item">Status: {{ ticket.status }}</li>
+            <li class="list-group-item">Subject: {{ ticket.subject }}</li>
             <li class="list-group-item">Details:<br>{{ ticket.description|safe }}</li>
         </ul>
     </div>
@@ -22,12 +23,9 @@
     {% if user == ticket.user or user.is_staff %}
     <div class="mb-4">
         <a href="{% url 'ticket_edit' ticket.pk %}" class="btn btn-primary">Edit Ticket</a>
-        <form method="post" action="{% url 'ticket_delete' ticket.pk %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Delete Ticket</button>
-        </form>
+        <button type="button" class="btn btn-danger delete-button" data-ticket-id="{{ ticket.pk }}">Delete Ticket</button>
     </div>
-    {% endif %}
+    {% endif %}    
 
     <!-- Displaying Comments -->
     <div class="card mb-4">
@@ -59,5 +57,7 @@
         </div>
     </div>
 </div>
+
+
 
 {% endblock %}

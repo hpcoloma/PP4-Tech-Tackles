@@ -26,6 +26,10 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    <!-- Include Moment.js and Moment-Timezone via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
@@ -72,6 +76,17 @@
         <p class="text-end m-3">You are not logged in</p>
         {% endif %}
 
+        <!-- Displaying Messages -->
+        {% if messages %}
+        <div class="container mt-4">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
@@ -90,9 +105,45 @@
             <i class="fab fa-youtube-square ms-3"></i>
         </p>
     </footer>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this ticket? This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" method="post" action="">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!--Custome JS -->
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
         </script>
+    
+    <script>
+        // Assuming UTC time
+        const utcTime = moment.utc('2024-07-14 12:00:00');
+    
+        // Convert UTC to local time in Ireland (Europe/Dublin timezone)
+        const localTime = utcTime.tz('Europe/Dublin');
+    
+        console.log(localTime.format('YYYY-MM-DD HH:mm:ss')); // Output local time in Ireland timezone
+      </script>
+
 </body>
 </html>

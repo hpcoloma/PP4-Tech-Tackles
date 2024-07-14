@@ -4,7 +4,7 @@ from .models import Ticket, Comment
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .forms import CommentForm, TicketForm
+from .forms import CommentForm, TicketForm, TicketUpdateForm
 
 
 # Create your views here.
@@ -69,31 +69,36 @@ def add_comment(request, pk):
 
 class TicketUpdateView(LoginRequiredMixin, UpdateView):
     model = Ticket
-    form_class = TicketForm
+    form_class = TicketUpdateForm
     template_name = 'support/ticket_form.html'
-    success_url = reverse_lazy('ticket_list') # Redirect to ticket list after successful update
-    
-    def form_valid(self, form):
-        messages.success(self.request, 'Ticket updated sucessfully.')
-        return super().form_valid(form)
-    
+    success_url = reverse_lazy('ticket_list')
+    success_message = "Ticket was updated successfully!"
+
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.request.user.is_staff:
             return Ticket.objects.all()
         return Ticket.objects.filter(user=self.request.user)
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user  # Pass the user to the form
+        return kwargs
 
-class TicketDeleteView(LoginRequiredMixin, DeleteView):
+    def form_valid(self, form):
+        messages.success(self.request, self.success_message)
+        return super().form_valid(form)
+
+
+class TicketDeleteView(DeleteView):
     model = Ticket
-    template_name = 'support/ticket_confirm_delete.html'
     success_url = reverse_lazy('ticket_list')
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        if self.request.user.is_staff:
-            return queryset
-        return queryset.filter(user=self.request.user)
+        qs = super().get_queryset()
+        if not self.request.user.is_staff:
+            qs = qs.filter(user=self.request.user)
+        return qs
 
     
     

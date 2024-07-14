@@ -167,6 +167,28 @@ body {
     color: rgb(222, 146, 168);
 }
 
+/*Modal styles*/
+/* .modal-container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 200px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+} */
+
+
+.popup {
+    display: none; /* Initially hide the popup */
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+}
+
 .footer {
     flex-shrink: 0;
 }

@@ -34,4 +34,13 @@ class TicketUpdateForm(forms.ModelForm):
             # Regular users can edit subject and description only
             self.fields['status'].disabled = True
 
+
+class StatusFilterForm(forms.Form):
+    STATUS_OPTIONS = (
+        ('', 'All'),
+        ('Open', 'Open'),
+        ('In Progress', 'In Progress'),
+        ('Closed', 'Closed'),
+    )
+    status = forms.ChoiceField(choices=STATUS_OPTIONS, required=False, label='Filter by Status')
             

@@ -11,7 +11,7 @@
             <li class="list-group-item">Submitted by: {{ ticket.user }}</li>
             <li class="list-group-item">Created On: {{ ticket.created_on }}</li>
             {% if ticket.updated_on != ticket.created_on %}
-            <li class="list-group-item">Updated On: {{ ticket.updated_on }}</li>
+                <li class="list-group-item">Updated On: {{ ticket.updated_on }}</li>
             {% endif %}
             <li class="list-group-item">Status: {{ ticket.status }}</li>
             <li class="list-group-item">Subject: {{ ticket.subject }}</li>
@@ -46,8 +46,10 @@
     <div class="card mb-4">
         <div class="card-body">
             {% if ticket.status == 'Closed' %}
-                <p>This ticket is closed. To reopen the issue, please create a new ticket.</p>
-                <a href="{% url 'ticket_create' %}">Create Ticket</a>
+                <div class="alert alert-primary" role="alert">
+                    <strong>This ticket is closed.</strong> To reopen the issue, please create a new ticket.
+                </div>
+                <a href="{% url 'ticket_create' %}" class="btn btn-primary">Create Ticket</a>
             {% else %}
                 {% if user.is_authenticated %}
                     <h3>Leave a comment:</h3>

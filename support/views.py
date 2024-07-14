@@ -5,7 +5,7 @@ from .models import Ticket, Comment
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .forms import CommentForm, TicketForm, TicketUpdateForm
+from .forms import CommentForm, TicketForm, TicketUpdateForm, StatusFilterForm
 
 
 # Create your views here.
@@ -18,13 +18,26 @@ def home_page(request):
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
     template_name = 'support/ticket_list.html'
+    context_object_name = 'tickets'
 
     def get_queryset(self):
-        if self.request.user.is_staff:
-            return Ticket.objects.all().order_by('ticket_id')
-        else:
-            return Ticket.objects.filter(user=self.request.user).order_by('ticket_id')
+        queryset = super().get_queryset()
+        status = self.request.GET.get('status')
 
+        if self.request.user.is_staff:
+            queryset = Ticket.objects.all()
+        else:
+            queryset = Ticket.objects.filter(user=self.request.user)
+
+        if status:
+            queryset = queryset.filter(status=status)
+
+        return queryset.order_by('ticket_id')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = StatusFilterForm(self.request.GET)
+        return context
 
 class TicketDetailView(LoginRequiredMixin, DetailView):
     model = Ticket

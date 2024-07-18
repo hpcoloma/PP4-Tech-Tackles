@@ -15,13 +15,13 @@ from django.http import HttpResponseForbidden
 @login_required
 def home_page(request):
     form = StatusFilterForm(request.GET)
-    tickets = Ticket.objects.all()
+    tickets = Ticket.objects.all().order_by('-created_on')
 
     if request.user.is_authenticated:
         if request.user.is_staff:
-            tickets = Ticket.objects.all()
+            tickets = tickets.order_by('-created_on')
         else:
-            tickets = Ticket.objects.filter(user=request.user)
+            tickets = tickets.filter(user=request.user).order_by('-created_on')
 
         # Apply filter
         if form.is_valid():
@@ -53,7 +53,7 @@ class TicketListView(LoginRequiredMixin, ListView):
         if status:
             queryset = queryset.filter(status=status)
 
-        return queryset.order_by('ticket_id')
+        return queryset.order_by('-created_on')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

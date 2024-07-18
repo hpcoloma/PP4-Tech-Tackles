@@ -26,13 +26,14 @@ class TicketUpdateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         # Determine field permissions based on user role
-        if self.user.is_staff:
-            # Staff can change status only
-            self.fields['subject'].disabled = True
-            self.fields['description'].disabled = True
-        else:
-            # Regular users can edit subject and description only
-            self.fields['status'].disabled = True
+        if self.user:
+            if self.user.is_staff and not self.user.is_superuser:  # Tech support (staff but not admin)
+                self.fields['subject'].disabled = True
+                self.fields['description'].disabled = True
+            elif self.user.is_superuser:  # Admin
+                pass  # Admins can edit everything
+            else:  # Regular users
+                self.fields['status'].disabled = True
 
 
 class StatusFilterForm(forms.Form):

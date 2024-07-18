@@ -4,11 +4,11 @@
 {% load static %}
 
 <div class="container mt-4">
-    {% if messages %}
+    <!-- {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
-    {% endif %}
+    {% endif %} -->
 
     {% if ticket %}
     <div class="container mt-4">
@@ -30,11 +30,15 @@
 
         <!--Edit and Delete options -->
         {% if user == ticket.user or user.is_staff %}
-            {% if ticket.status == 'Open' %}
+            {% if ticket.status != 'Closed' %}
                 <div class="mb-4">
                     <a href="{% url 'ticket_edit' ticket.pk %}" class="btn btn-primary">Edit Ticket</a>
                     <button type="button" class="btn btn-danger delete-button" data-ticket-id="{{ ticket.pk }}">Delete Ticket</button>
                 </div>
+            <!-- {% elif user.is_staff and ticket.status == 'In Progress' %}
+                <div class="mb-4">
+                    <a href="{% url 'ticket_edit' ticket.pk %}" class="btn btn-primary">Edit Ticket</a>
+                </div> -->
             {% endif %}
         {% endif %}    
 
@@ -52,7 +56,9 @@
                         {% if user == comment.user or user.is_staff %}
                             {% if ticket.status != 'Closed' %}
                             <div class="edit-button-container">
+                                {% if user == comment.user %}
                                 <button class="btn btn-primary btn-sm edit-comment-btn" data-bs-toggle="modal" data-bs-target="#editCommentModal" data-comment-id="{{ comment.id }}" data-comment="{{ comment.comment }}">Edit</button>
+                                {% endif %}
                                 <button class="btn btn-danger btn-sm delete-comment-button" data-comment-id="{{ comment.id }}">Delete</button>
                             </div>
                             {% endif %}

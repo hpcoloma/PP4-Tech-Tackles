@@ -107,10 +107,11 @@ class TicketUpdateView(LoginRequiredMixin, UpdateView):
     model = Ticket
     form_class = TicketUpdateForm
     template_name = 'support/ticket_form.html'
-    
+    success_message = "Ticket was updated successfully!"
+
     def get_queryset(self):
         queryset = super().get_queryset()
-        if self.request.user.is_staff:
+        if self.request.user.is_staff or self.request.user.is_superuser:
             return Ticket.objects.all()
         return Ticket.objects.filter(user=self.request.user)
 
@@ -120,11 +121,11 @@ class TicketUpdateView(LoginRequiredMixin, UpdateView):
         return kwargs
 
     def form_valid(self, form):
-        messages.success(self.request, "Ticket was updated successfully!")  # Set success message
+        messages.success(self.request, self.success_message)  # Set success message
         return super().form_valid(form)
-
+    
     def get_success_url(self):
-        return reverse_lazy('ticket_detail',  kwargs={'pk': self.object.pk})
+        return reverse_lazy('ticket_detail', kwargs={'pk': self.object.pk})
     
 
 

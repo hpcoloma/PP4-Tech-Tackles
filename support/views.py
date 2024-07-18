@@ -93,20 +93,20 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
     model = Ticket
     form_class = TicketForm
     template_name = 'support/ticket_form.html'
-    success_url = reverse_lazy('ticket_list')
-
+    
     def form_valid(self, form, *args, **kwargs):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('ticket_detail', kwargs={'pk': self.object.pk})
 
 
 class TicketUpdateView(LoginRequiredMixin, UpdateView):
     model = Ticket
     form_class = TicketUpdateForm
     template_name = 'support/ticket_form.html'
-    success_url = reverse_lazy('ticket_list')
-    success_message = "Ticket was updated successfully!"
-
+    
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.request.user.is_staff:
@@ -119,8 +119,12 @@ class TicketUpdateView(LoginRequiredMixin, UpdateView):
         return kwargs
 
     def form_valid(self, form):
-        messages.success(self.request, self.success_message)
+        messages.success(self.request, "Ticket was updated successfully!")  # Set success message
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('ticket_detail',  kwargs={'pk': self.object.pk})
+    
 
 
 class TicketDeleteView(DeleteView):

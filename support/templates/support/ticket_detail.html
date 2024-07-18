@@ -20,7 +20,7 @@
                 <li class="list-group-item">Submitted by: {{ ticket.user }}</li>
                 <li class="list-group-item">Created On: {{ ticket.created_on }}</li>
                 {% if ticket.created_on|date:"Y-m-d H:i:s" != ticket.updated_on|date:"Y-m-d H:i:s" %}
-                    <li class="list-group-item">Updated On: {{ ticket.updated_on }}</li>
+                    <li class="list-group-item"><strong>Updated On: {{ ticket.updated_on }}</strong></li>
                 {% endif %}
                 <li class="list-group-item">Status: {{ ticket.status }}</li>
                 <li class="list-group-item">Subject: {{ ticket.subject }}</li>
@@ -44,16 +44,18 @@
                 <h4>Comments:</h4>
                 <ul>
                     {% for comment in comments %}
-                    <li>{{ comment.user.username }} - {{ comment.created_on }} wrote:
+                    <li><strong>{{ comment.user.username }}</strong> - {{ comment.created_on }} wrote:
                         {{ comment.comment|linebreaks }}
                         {% if comment.created_on|date:"Y-m-d H:i:s" != comment.updated_on|date:"Y-m-d H:i:s" %}
                             <br><small>Updated on: {{ comment.updated_on }}</small>
                         {% endif %}
                         {% if user == comment.user or user.is_staff %}
+                            {% if ticket.status != 'Closed' %}
                             <div class="edit-button-container">
                                 <button class="btn btn-primary btn-sm edit-comment-btn" data-bs-toggle="modal" data-bs-target="#editCommentModal" data-comment-id="{{ comment.id }}" data-comment="{{ comment.comment }}">Edit</button>
                                 <button class="btn btn-danger btn-sm delete-comment-button" data-comment-id="{{ comment.id }}">Delete</button>
                             </div>
+                            {% endif %}
                         {% endif %}
                     </li>
                     {% endfor %}

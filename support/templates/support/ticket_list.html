@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-4">
-    <h1>TICKET LIST</h1>
+    {% if user.is_staff %}<h3>All Tickets List</h3>{% else %}<h3>My Tickets List</h3>{% endif %}
     <div class="mb-4">        
         <a href="{% url 'ticket_create' %}" class="btn btn-primary">Create Ticket</a>
     </div>  
     
-    <!--Filter Form-->
+    <!-- Filter Form -->
     <form method="get" action="" class="mt-3 mb-3">
-        {{ filter_form.status.label_tag }}
-        {{ filter_form.status }}
-        <button type="submit" class="btn btn-primary">Filter</button>
+        <div class="form-group">
+            {{ filter_form.status.label_tag }}
+            {{ filter_form.status }}
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
     </form>
     
     <div class="container-fluid">

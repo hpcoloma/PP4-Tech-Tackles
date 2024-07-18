@@ -12,11 +12,28 @@ from django.http import HttpResponseForbidden
 
 
 # Create your views here.
+@login_required
 def home_page(request):
-    if request.user.is_authenticated:
-        return redirect('ticket_list')
-    return render(request, 'support/index.html')
+    form = StatusFilterForm(request.GET)
+    tickets = Ticket.objects.all()
 
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            tickets = Ticket.objects.all()
+        else:
+            tickets = Ticket.objects.filter(user=request.user)
+
+        # Apply filter
+        if form.is_valid():
+            status = form.cleaned_data.get('status')
+            if status:
+                tickets = tickets.filter(status=status)
+
+        return render(request, 'support/ticket_list.html', {
+            'object_list': tickets,
+            'filter_form': form
+        })
+    return render(request, 'support/index.html')
 
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket

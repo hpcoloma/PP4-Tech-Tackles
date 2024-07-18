@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Ticket, Comment
@@ -6,6 +6,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .forms import CommentForm, TicketForm, TicketUpdateForm, StatusFilterForm
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseForbidden
+
 
 
 # Create your views here.
@@ -18,6 +21,7 @@ def home_page(request):
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
     template_name = 'support/ticket_list.html'
+    paginated_by = 10
     context_object_name = 'tickets'
 
     def get_queryset(self):
@@ -39,12 +43,27 @@ class TicketListView(LoginRequiredMixin, ListView):
         context['filter_form'] = StatusFilterForm(self.request.GET)
         return context
 
+
 class TicketDetailView(LoginRequiredMixin, DetailView):
     model = Ticket
     template_name = 'support/ticket_detail.html'
-    # comment_form = CommentForm()
+    context_object_name = 'ticket'
+      
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        loggedUser = self.request.user
 
-  
+        if loggedUser.is_staff or loggedUser.groups.filter(name='tech_support').exists():
+            return queryset
+        return queryset.filter(user=self.request.user)
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        loggedUser = self.request.user
+        if obj.user != loggedUser and not (loggedUser.is_staff or loggedUser.groups.filter(name='tech_support').exists()):
+            raise PermissionDenied("You do not have permission to view this ticket.")
+        return obj
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         ticket = self.get_object()
@@ -52,7 +71,6 @@ class TicketDetailView(LoginRequiredMixin, DetailView):
         context['comment_form'] = CommentForm()
         return context
 
-    
 
 class TicketCreateView(LoginRequiredMixin, CreateView):
     model = Ticket
@@ -63,22 +81,6 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form, *args, **kwargs):
         form.instance.user = self.request.user
         return super().form_valid(form)
-
-
-@login_required
-def add_comment(request, pk):
-    ticket = get_object_or_404(Ticket, pk=pk)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.ticket = ticket
-            comment.user = request.user
-            comment.save()
-            return redirect('ticket_detail', pk=ticket.pk)
-    else:
-        form = CommentForm()
-    return render(request, 'support/add_comment.html', {'form': form})
 
 
 class TicketUpdateView(LoginRequiredMixin, UpdateView):
@@ -119,7 +121,43 @@ class TicketDeleteView(DeleteView):
         messages.success(self.request, self.success_message)
         return super().form_valid(form)
     
-    
+
+@login_required
+def add_comment(request, pk):
+    ticket = get_object_or_404(Ticket, pk=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.ticket = ticket
+            comment.user = request.user
+            comment.save()
+            return redirect('ticket_detail', pk=ticket.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'support/add_comment.html', {'form': form})
 
 
+@login_required
+def edit_comment(request):
+    if request.method == 'POST':
+        comment_id = request.POST.get('comment_id')
+        new_comment_text = request.POST.get('comment')
+        comment = get_object_or_404(Comment, id=comment_id)
 
+        if request.user == comment.user or request.user.is_staff:
+            comment.comment = new_comment_text
+            comment.save()
+            return redirect('ticket_detail', pk=comment.ticket.id)
+        else:
+            return HttpResponseForbidden()
+    return redirect('ticket_list')
+
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    ticket_id = comment.ticket.id
+    if request.user == comment.user or request.user.is_staff:
+        comment.delete()
+    return redirect(reverse('ticket_detail', kwargs={'pk': ticket_id}))

@@ -295,6 +295,7 @@ Even after the initial development and deployment, continuous improvement is key
 
 By following this agile approach with clear iterations, we ensure that the development of the TECH TACKLES IT Support Ticketing System is structured, efficient, and responsive to user needs.
 ## Bugs and Potential issues
+
 ## Technologies and language
 ## Development
 ## Deployment on Heroku

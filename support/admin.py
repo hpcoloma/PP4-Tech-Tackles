@@ -11,4 +11,22 @@ class PostAdmin(SummernoteModelAdmin):
     summernote_fields = ('description',)
 
 # Register your models here.
-admin.site.register(Comment)
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('formatted_ticket_id', 'ticket_status', 'user', 'created_on')
+    list_filter = ('created_on',)
+
+    def formatted_ticket_id(self, obj):
+        if obj.ticket:
+            return obj.ticket.ticket_id  # Replace with your actual ticket ID attribute
+        else:
+            return '-'  # Handle case where no ticket is associated 
+
+    def ticket_status(self, obj):
+        return obj.ticket.status if obj.ticket else '-'  # Display status if ticket exists, else '-'
+
+    formatted_ticket_id.admin_order_field = 'ticket__id'  # Allow sorting by ticket ID
+    ticket_status.admin_order_field = 'ticket__status'  # Allow sorting by ticket status
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('ticket', 'user')

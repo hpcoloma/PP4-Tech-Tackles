@@ -93,9 +93,10 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
     model = Ticket
     form_class = TicketForm
     template_name = 'support/ticket_form.html'
-    
-    def form_valid(self, form, *args, **kwargs):
+        
+    def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, "Ticket was created successfully!")  # Add success message
         return super().form_valid(form)
     
     def get_success_url(self):
@@ -169,6 +170,7 @@ def edit_comment(request):
         if request.user == comment.user or request.user.is_staff:
             comment.comment = new_comment_text
             comment.save()
+            messages.success(request, 'Comment was updated successfully!')  # Add success message
             return redirect('ticket_detail', pk=comment.ticket.id)
         else:
             return HttpResponseForbidden()
@@ -181,4 +183,5 @@ def delete_comment(request, comment_id):
     ticket_id = comment.ticket.id
     if request.user == comment.user or request.user.is_staff:
         comment.delete()
+        messages.success(request, 'Comment was deleted successfully!')  # Add success message
     return redirect(reverse('ticket_detail', kwargs={'pk': ticket_id}))

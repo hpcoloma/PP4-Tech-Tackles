@@ -69,6 +69,8 @@ MESSAGE_TAGS = {
     messages.ERROR: 'error',
 }
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -12,7 +12,7 @@ from django.http import HttpResponseForbidden
 
 
 # Create your views here.
-@login_required
+# @login_required
 def home_page(request):
     form = StatusFilterForm(request.GET)
     tickets = Ticket.objects.all().order_by('-created_on')

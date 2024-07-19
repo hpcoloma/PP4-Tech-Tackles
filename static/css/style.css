@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
+.navbar {
+    position: fixed; /* Fixes the navbar to the top of the viewport */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensures the navbar spans the full width of the viewport */
+    z-index: 1000; /* Ensures the navbar stays above other content */
+    height: 60px; /* Match this with the height of your navbar */
+    padding: 0; /* Reset any padding */
+    display: flex;
+    align-items: center;
+    background-color: white; /* Ensure it has a background color */
+}
+
+.collapse {
+    background-color: white; /* Set background color to white */
+}
+
+.navbar-text {
+    color: #6c757d; /* Set text color to a muted color */
+}
+
 body {
     background: #ffffff no-repeat;
     height: 100%;
@@ -9,163 +30,43 @@ body {
     font-family: "Titillium Web", sans-serif;
 }
 
- .brand {
+.home-page {
+    background-image: url('https://res.cloudinary.com/doxcaxx9q/image/upload/v1721333282/techtackles_bg_cu77wp.png');
+    height: 100vh;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-position: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -8rem;
+}
+
+.welcome-card {
+    position: absolute;
+    top: 50%;
+    left: 5px; /* Move the card 5px to the left */
+    transform: translateY(-50%);
+    width: 40%; /* Set the card width to 50% of its container */
+    margin: 2px; /* Apply the existing margin */
+    border: none; /* Remove border */
+    background-color: transparent; /* Set background color to transparent */
+}
+
+main {
+    margin-top: 80px;
+}
+.brand {
     font-size: 1.4rem;
     font-weight: 700;
     color: #1440a0;
 }
-/*
-.red-o {
-    color: #E84610;
-}
 
-.thin {
-    font-weight: 300;
-}
-
-.light-bg {
-    background-color: #fff;
-}
-
-.dark-bg {
-    background-color: #445261;
-}
-
-.main-bg {
-    background-color: #F9FAFC;
-    overflow: auto;
-}
-
-.card {
-    border: none;
-    background-color: transparent;
-}
-
-.image-container {
-    position: relative;
-}
-
-.image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #188181;
-}
-
-.scale {
-    width: 100%;
-    height: auto;
-}
-
-.author {
-    color: rgb(255, 255, 255);
-    margin: 4px;
-    text-transform: uppercase;
-}
-
-.masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 33vh;
-    width: 100%;
-}
-
-.masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
-}
-
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.masthead-image:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
-}
-
-/* .post-link {
-    text-decoration: none;
-    color: #445261;
-}
-
-.post-link:hover,
-.page-link {
-    color: #E84610;
-} */
-/* 
-.post-title {
-    margin-top: 10%;
-    margin-left: 5%;
-}
-
-.post-subtitle {
-    margin-left: 5%;
-    color: lightgray;
-}
-*/
 .btn-signup,
 .btn-edit {
     background-color: #3864f5;
     color: #fff;
 }
-/*
-.btn-signup:hover,
-.btn-signup:active {
-    background-color: #fff;
-    color: #23BBBB;
-}
-
-.link {
-    color: #23BBBB;
-    text-decoration: none;
-}
-
-.link:hover,
-.link:active {
-    color: #445261;
-    text-decoration: underline;
-} */
-/* 
-.btn-like {
-    color: #E84610;
-    border: none;
-    background: transparent;
-}
-
-.btn-delete {
-    color: #fff;
-    background: #E84610;
-}
-
-.btn-like:hover,
-.btn-like:active {
-    color: #E84610;
-    background: transparent;
-    border: none;
-}
-
-.faded {
-    color: rgb(172, 175, 175);
-}
-
-.approval {
-    color: rgb(222, 146, 168);
-} */
 
 /* Custome CSS */
 
@@ -194,6 +95,11 @@ thead {
     margin: 10px 0;
     border: 1px solid #1f4405;
     border-radius: 5px;
+}
+
+.dark-primary {
+    background-color: #145ea5; /* or any dark color you prefer */
+    color: white;
 }
 
 .footer {

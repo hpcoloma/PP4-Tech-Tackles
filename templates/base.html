@@ -22,6 +22,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -39,6 +40,7 @@
     <!--Bootsrap JS and dependencies-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -47,7 +49,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-            <span class="brand"><a class="navbar-brand" href="{% url 'home' %}">Tech Tackles</a></span>
+            <span class="brand"><a class="navbar-brand" href="{% url 'home' %}"><img src="https://res.cloudinary.com/doxcaxx9q/image/upload/v1721345745/techtackles_logo2_mmwt25.png"></a></span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -82,20 +84,18 @@
                         </li>
                     {% endif %}
                 </ul>
-                <!-- <span class="navbar-text text-muted">
-                    Knowledge Base
-                </span> -->
+                <span class="navbar-text text-muted">
+                    {% if user.is_authenticated %}
+                        <p class="text-end m-3">You are logged in as {{ user }}</p>
+                    {% else %}
+                        <p class="text-end m-3">You are not logged in</p>
+                    {% endif %}
+                </span>
             </div>
         </div>
     </nav>
 
     <main class="flex-grow-1">
-        {% if user.is_authenticated %}
-        <p class="text-end m-3">You are logged in as {{ user }}</p>
-        {% else %}
-        <p class="text-end m-3">You are not logged in</p>
-        {% endif %}
-
         <!-- Displaying Messages -->
         {% if messages %}
         <div class="container mt-4">

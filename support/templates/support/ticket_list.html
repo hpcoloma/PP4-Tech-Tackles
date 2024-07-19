@@ -33,7 +33,7 @@
                         <td><a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket.ticket_id }} </a></td>
                         <td>{{ ticket.status }}</td>
                         <td>{{ ticket.subject }}</td>
-                        <td>{{ ticket.created_on }}</td>
+                        <td>{{ ticket.created_on|date:"F j, Y" }}</td> <!--Formats the date not to display the time-->
                         <td>{{ ticket.user }}</td>
                     </tr> 
                     {% endfor %}

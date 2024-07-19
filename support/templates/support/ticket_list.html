@@ -32,9 +32,9 @@
                     <tr>
                         <td><a href="{% url 'ticket_detail' ticket.pk %}">{{ ticket.ticket_id }} </a></td>
                         <td>{{ ticket.status }}</td>
-                        <td>{{ ticket.subject }}</td>
-                        <td>{{ ticket.created_on|date:"F j, Y" }}</td>
-                        <td>{{ ticket.user }}</td>
+                        <td class="hide-mobile">{{ ticket.subject }}</td>
+                        <td class="hide-mobile">{{ ticket.created_on|date:"F j, Y" }}</td>
+                        <td class="hide-mobile">{{ ticket.user }}</td>
                     </tr> 
                     {% endfor %}
                 </tbody>

@@ -48,8 +48,8 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container-fluid">
-            <span class="brand"><a class="navbar-brand" href="{% url 'home' %}"><img src="https://res.cloudinary.com/doxcaxx9q/image/upload/v1721345745/techtackles_logo2_mmwt25.png"></a></span>
+        <div class="container-fluid p-1">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="https://res.cloudinary.com/doxcaxx9q/image/upload/v1721345745/techtackles_logo2_mmwt25.png"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -84,19 +84,10 @@
                         </li>
                     {% endif %}
                 </ul>
-                <span class="navbar-text text-muted">
-                    {% if user.is_authenticated %}
-                        <p class="text-end m-3">You are logged in as {{ user }}</p>
-                    {% else %}
-                        <p class="text-end m-3">You are not logged in</p>
-                    {% endif %}
-                </span>
             </div>
         </div>
     </nav>
-
-    <main class="flex-grow-1">
-        <!-- Displaying Messages -->
+    <!-- Displaying Messages -->
         {% if messages %}
         <div class="container mt-4">
             {% for message in messages %}
@@ -106,9 +97,9 @@
             {% endfor %}
         </div>
         {% endif %}
-
+    <main class="flex-grow-1">
         {% block content %}
-        <!-- Content Goes here -->
+        <!-- Content Goes here -->        
         {% endblock content %}
     </main>
 

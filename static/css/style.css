@@ -1,16 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
-.navbar {
-    position: fixed; /* Fixes the navbar to the top of the viewport */
-    top: 0;
-    left: 0;
-    width: 100%; /* Ensures the navbar spans the full width of the viewport */
-    z-index: 1000; /* Ensures the navbar stays above other content */
-    height: 60px; /* Match this with the height of your navbar */
-    padding: 0; /* Reset any padding */
+/*Asterisk Wildcard selector to override default style added by the browser*/
+* {
+    padding: 0;
+    margin: 0;
+    /* box-sizing: border-box; */
+    font-family: "Titillium Web", sans-serif;
+}
+
+/*Header*/
+header {
+    background-color: #fafafa;
+    padding: 0 1rem;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    box-shadow: 0 3px 3px #666665;
     display: flex;
-    align-items: center;
-    background-color: white; /* Ensure it has a background color */
+    justify-content: space-between;
+    align-items: baseline;
 }
 
 .collapse {
@@ -21,45 +29,65 @@
     color: #6c757d; /* Set text color to a muted color */
 }
 
-body {
-    background: #ffffff no-repeat;
-    height: 100%;
-    margin: 0;
+.navbar {
+    z-index: 1000;
+    box-shadow: 0 3px 3px #6c757d;
     padding: 0;
-    overflow: auto;
-    font-family: "Titillium Web", sans-serif;
+    position: relative;
+    height: 50px;
 }
 
 .home-page {
     background-image: url('https://res.cloudinary.com/doxcaxx9q/image/upload/v1721333282/techtackles_bg_cu77wp.png');
-    height: 100vh;
+    min-height: 100%;
     background-repeat: no-repeat;
-    width: 100%;
-    background-position: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -8rem;
+    overflow: hidden;
+    background-position-x: right;
+    background-size: cover;
+    
+    
+}
+
+body {
+    background: #ffffff no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* overflow: auto; */
+    
 }
 
 .welcome-card {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
     position: absolute;
     top: 50%;
-    left: 5px; /* Move the card 5px to the left */
-    transform: translateY(-50%);
-    width: 40%; /* Set the card width to 50% of its container */
+    left: 50%; 
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    width: 70vw;
     margin: 2px; /* Apply the existing margin */
-    border: none; /* Remove border */
-    background-color: transparent; /* Set background color to transparent */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.1);
 }
 
-main {
-    margin-top: 80px;
+.card-text {
+    text-align: center;          
+    font-size: 1.8em;            /* Make the text bigger */
+    line-height: 1;              /* Remove space between sentences */
+    margin: 0;                   
+    padding: 0;                  
 }
+
+.card-text p {
+    margin: 0;                   /* Remove margin between paragraphs */
+    display: inline-block;       /* Display inline to ensure no extra spacing */
+}
+
+
+
 .brand {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #1440a0;
+    color: #0d6915;
 }
 
 .btn-signup,
@@ -68,7 +96,6 @@ main {
     color: #fff;
 }
 
-/* Custome CSS */
 
 /* Styles for the comment form */
 #commentForm textarea {
@@ -104,4 +131,13 @@ thead {
 
 .footer {
     flex-shrink: 0;
+    height: 80px;
+    position: relative;
+}
+
+/* Media query for mobile views */
+@media (max-width: 768px) {
+    .welcome-card {
+        width: 90vw; /* Adjust width for mobile */
+    }
 }

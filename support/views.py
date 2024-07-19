@@ -38,8 +38,8 @@ def home_page(request):
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
     template_name = 'support/ticket_list.html'
-    paginated_by = 10
     context_object_name = 'tickets'
+    paginate_by = 10 # Default items per page
 
     def get_queryset(self):
         queryset = super().get_queryset()

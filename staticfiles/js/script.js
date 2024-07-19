@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     const editCommentButtons = document.querySelectorAll('.edit-comment-btn');
     const editCommentModal = new bootstrap.Modal(document.getElementById('editCommentModal'));
-    const editCommentForm = document.getElementById('editCommentForm');
+    // const editCommentForm = document.getElementById('editCommentForm');
     const editCommentId = document.getElementById('editCommentId');
     const editCommentText = document.getElementById('editCommentText');
 

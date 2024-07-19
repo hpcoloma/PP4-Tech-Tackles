@@ -37,9 +37,8 @@ def home_page(request):
 
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
-    template_name = 'support/ticket_list.html'
     context_object_name = 'tickets'
-    paginate_by = 10 # Default items per page
+    paginate_by = 10  # Show 10 tickets per page
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -59,7 +58,7 @@ class TicketListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['filter_form'] = StatusFilterForm(self.request.GET)
         return context
-
+        
 
 class TicketDetailView(LoginRequiredMixin, DetailView):
     model = Ticket

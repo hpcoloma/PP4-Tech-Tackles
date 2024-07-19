@@ -57,6 +57,10 @@ body {
     
 }
 
+.collapse:not(.show) {
+    display: none;
+}
+
 .welcome-card {
     background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
     position: absolute;
@@ -138,6 +142,10 @@ thead {
 /* Media query for mobile views */
 @media (max-width: 768px) {
     .welcome-card {
-        width: 90vw; /* Adjust width for mobile */
+        width: 90vw;
+    }
+
+    .hide-mobile {
+        display: none;
     }
 }

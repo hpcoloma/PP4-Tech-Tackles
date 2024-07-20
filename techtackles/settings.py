@@ -4,6 +4,7 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 from django.contrib.messages import constants as messages
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,7 +18,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-hpcoloma-pp4techtackles-wk0blf6r593.ws.codeinstitute-ide.net',
 '.herokuapp.com']

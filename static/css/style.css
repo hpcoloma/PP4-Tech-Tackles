@@ -20,11 +20,6 @@ header {
     align-items: baseline;
 }
 
-/* .collapse { */
-    /* background-color: white; 
-    Set background color to white
-} */
-
 .navbar-collapse {
     margin: 0;
     padding: 0;
@@ -36,7 +31,7 @@ header {
 }
 
 .navbar-text {
-    color: #6c757d; /* Set text color to a muted color */
+    color: #6c757d;
 }
 
 .navbar {
@@ -45,9 +40,19 @@ header {
     padding: 0;
     position: relative;
     height: auto;
-    /* width: fit-content; */
     margin-bottom: 0;
 }
+
+.navbar, .navbar-collapse {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.container-fluid {
+    padding: 0 !important;
+}
+
+
 
 .main-bg {
     padding-top: 0 !important; 

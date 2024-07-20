@@ -1,6 +1,17 @@
 from . import views
 from django.urls import path
-from .views import home_page, TicketListView, TicketDetailView, TicketCreateView, add_comment, TicketUpdateView, TicketDeleteView, edit_comment, delete_comment, NoAccessView
+from .views import (
+    home_page, 
+    TicketListView, 
+    TicketDetailView, 
+    TicketCreateView, 
+    add_comment, 
+    TicketUpdateView, 
+    TicketDeleteView, 
+    edit_comment, 
+    delete_comment, 
+    NoAccessView
+)
 
 urlpatterns = [
     path('', home_page, name='home'),

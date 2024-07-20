@@ -6,9 +6,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .forms import CommentForm, TicketForm, TicketUpdateForm, StatusFilterForm
-from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden
-from django.http import HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
+
 
 
 # Create your views here.
@@ -64,23 +64,27 @@ class TicketDetailView(LoginRequiredMixin, DetailView):
     model = Ticket
     template_name = 'support/ticket_detail.html'
     context_object_name = 'ticket'
-      
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        loggedUser = self.request.user
-
-        if loggedUser.is_staff or loggedUser.groups.filter(name='tech_support').exists():
-            return queryset
-        return queryset.filter(user=self.request.user)
 
     def dispatch(self, request, *args, **kwargs):
-        obj = self.get_object()
-        loggedUser = self.request.user
-        if obj.user != loggedUser and not (loggedUser.is_staff or loggedUser.groups.filter(name='tech_support').exists()):
-            return HttpResponseRedirect(reverse('no_access'))  # Redirect to the no access page
+        try:
+            # Get the ticket object to check permissions
+            obj = self.get_object()
+        except Http404:
+            # If ticket is not found, use Django's default 404 handling
+            return render(request, 'support/404.html', status=404)
+        
+        logged_user = self.request.user
+
+        # Check if the logged-in user is not the ticket owner and is not staff
+        if obj.user != logged_user and not (logged_user.is_staff or logged_user.groups.filter(name='tech_support').exists()):
+            return redirect('no_access')  # Redirect to the no access page
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
+        """
+        Adds comments and comment form to the context.
+        """
         context = super().get_context_data(**kwargs)
         context['comments'] = self.object.comments.all().order_by('-created_on')
         context['comment_form'] = CommentForm()

@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import CommentForm, TicketForm, TicketUpdateForm, StatusFilterForm
 from django.http import HttpResponseForbidden
 from django.http import Http404, HttpResponseRedirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login
 
 
 
@@ -16,6 +18,7 @@ from django.http import Http404, HttpResponseRedirect
 def home_page(request):
     form = StatusFilterForm(request.GET)
     tickets = Ticket.objects.all().order_by('-created_on')
+    paginate_by = 10  # Show 10 tickets per page
 
     if request.user.is_authenticated:
         if request.user.is_staff:
@@ -34,6 +37,20 @@ def home_page(request):
             'filter_form': form
         })
     return render(request, 'support/index.html')
+
+
+def custom_login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect(reverse('ticket_list'))  # Redirect to ticket list after login
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'account/login.html', {'form': form})
+
 
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket

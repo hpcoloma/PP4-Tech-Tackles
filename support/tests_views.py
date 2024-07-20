@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from .models import Ticket, Comment
+from django.contrib.auth.forms import AuthenticationForm
 
 User = get_user_model()
 
@@ -24,7 +25,7 @@ class TicketViewsTest(TestCase):
         self.client.login(username='user', password='userpass')
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'support/ticket_list.html')  
+        self.assertTemplateUsed(response, 'support/ticket_list.html')
 
     def test_ticket_list_view_for_authenticated_user(self):
         self.client.login(username='user', password='userpass')
@@ -95,3 +96,35 @@ class TicketViewsTest(TestCase):
         response = self.client.get(reverse('no_access'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'support/no_access.html')
+
+
+class CustomLoginViewTest(TestCase):
+
+    def setUp(self):
+        # Create a test user
+        self.username = 'testuser'
+        self.password = 'testpassword'
+        self.user = User.objects.create_user(username=self.username, password=self.password)
+        self.login_url = reverse('custom_login')
+    
+    def test_login_page_renders_correctly(self):
+        response = self.client.get(self.login_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'account/login.html')
+        self.assertIsInstance(response.context['form'], AuthenticationForm)
+
+    def test_successful_login_redirects(self):
+        response = self.client.post(self.login_url, {'username': self.username, 'password': self.password})
+        self.assertRedirects(response, reverse('ticket_list'))
+    
+    def test_invalid_login_shows_error(self):
+        response = self.client.post(self.login_url, {'username': self.username, 'password': 'wrongpassword'})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'account/login.html')
+        self.assertContains(response, 'Please enter a correct username and password. Note that both fields may be case-sensitive.')
+
+    def test_invalid_login_no_user(self):
+        response = self.client.post(self.login_url, {'username': 'nouser', 'password': 'nopassword'})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'account/login.html')
+        self.assertContains(response, 'Please enter a correct username and password. Note that both fields may be case-sensitive.')

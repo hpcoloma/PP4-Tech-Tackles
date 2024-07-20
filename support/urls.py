@@ -1,7 +1,8 @@
 from . import views
 from django.urls import path
 from .views import (
-    home_page, 
+    home_page,
+    custom_login_view,
     TicketListView, 
     TicketDetailView, 
     TicketCreateView, 
@@ -24,6 +25,7 @@ urlpatterns = [
     path('ticket/new/', TicketCreateView.as_view(), name='ticket_create'),
     path('ticket/<int:pk>/edit/', TicketUpdateView.as_view(), name='ticket_edit'),
     path('ticket/<int:pk>/delete/', TicketDeleteView.as_view(), name='ticket_delete'),
+    path('login/', custom_login_view, name='custom_login'),  # Map URL to custom login view
 ]
 
 

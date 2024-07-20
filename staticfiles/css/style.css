@@ -156,6 +156,7 @@ thead {
     flex-shrink: 0;
     height: 80px;
     position: relative;
+    /* padding-top: 1px; */
 }
 
 /* Media query for mobile views */

@@ -61,3 +61,21 @@ class TicketUpdateFormTest(TestCase):
         self.assertFalse(form.fields['subject'].disabled)
         self.assertFalse(form.fields['description'].disabled)
         self.assertTrue(form.fields['status'].disabled)
+
+
+class StatusFilterFormTest(TestCase):
+
+    def test_all_statuses(self):
+        form_data = {'status': ''}
+        form = StatusFilterForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_open_status(self):
+        form_data = {'status': 'Open'}
+        form = StatusFilterForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_invalid_status(self):
+        form_data = {'status': 'InvalidStatus'}
+        form = StatusFilterForm(data=form_data)
+        self.assertFalse(form.is_valid())

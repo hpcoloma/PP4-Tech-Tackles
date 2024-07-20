@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Ticket, Comment
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import CommentForm, TicketForm, TicketUpdateForm, StatusFilterForm
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden
-
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -73,17 +73,16 @@ class TicketDetailView(LoginRequiredMixin, DetailView):
             return queryset
         return queryset.filter(user=self.request.user)
 
-    def get_object(self, queryset=None):
-        obj = super().get_object(queryset)
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
         loggedUser = self.request.user
         if obj.user != loggedUser and not (loggedUser.is_staff or loggedUser.groups.filter(name='tech_support').exists()):
-            raise PermissionDenied("You do not have permission to view this ticket.")
-        return obj
+            return HttpResponseRedirect(reverse('no_access'))  # Redirect to the no access page
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        ticket = self.get_object()
-        context['comments'] = ticket.comments.all().order_by('-created_on')
+        context['comments'] = self.object.comments.all().order_by('-created_on')
         context['comment_form'] = CommentForm()
         return context
 
@@ -185,3 +184,7 @@ def delete_comment(request, comment_id):
         comment.delete()
         messages.success(request, 'Comment was deleted successfully!')  # Add success message
     return redirect(reverse('ticket_detail', kwargs={'pk': ticket_id}))
+
+
+class NoAccessView(TemplateView):
+    template_name = 'support/no_access.html'

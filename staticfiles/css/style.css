@@ -4,7 +4,6 @@
 * {
     padding: 0;
     margin: 0;
-    /* box-sizing: border-box; */
     font-family: "Titillium Web", sans-serif;
 }
 
@@ -21,12 +20,18 @@ header {
     align-items: baseline;
 }
 
-.collapse {
-    background-color: white; /* Set background color to white */
+.navbar-collapse {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.container-fluid.p-1 {
+    padding: 0 !important; /* Override padding on container-fluid */
 }
 
 .navbar-text {
-    color: #6c757d; /* Set text color to a muted color */
+    color: #6c757d;
 }
 
 .navbar {
@@ -34,7 +39,23 @@ header {
     box-shadow: 0 3px 3px #6c757d;
     padding: 0;
     position: relative;
-    height: 50px;
+    height: auto;
+    margin-bottom: 0;
+}
+
+.navbar, .navbar-collapse {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.container-fluid {
+    padding: 0 !important;
+}
+
+
+
+.main-bg {
+    padding-top: 0 !important; 
 }
 
 .home-page {
@@ -55,10 +76,6 @@ body {
     padding: 0;
     /* overflow: auto; */
     
-}
-
-.collapse:not(.show) {
-    display: none;
 }
 
 .welcome-card {
@@ -85,7 +102,6 @@ body {
     margin: 0;                   /* Remove margin between paragraphs */
     display: inline-block;       /* Display inline to ensure no extra spacing */
 }
-
 
 
 .brand {
@@ -132,7 +148,7 @@ thead {
 }
 
 .dark-primary {
-    background-color: #145ea5; /* or any dark color you prefer */
+    background-color: #6c757d; /* or any dark color you prefer */
     color: white;
 }
 

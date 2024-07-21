@@ -31,7 +31,11 @@ header {
 }
 
 .navbar-text {
-    color: #6c757d;
+    color: #666665;
+}
+
+.nav-link.active {
+    color: #3864F5 !important;
 }
 
 .navbar {
@@ -59,14 +63,13 @@ header {
 }
 
 .home-page {
-    background-image: url('https://res.cloudinary.com/doxcaxx9q/image/upload/v1721333282/techtackles_bg_cu77wp.png');
+    /* background-image: url('https://res.cloudinary.com/doxcaxx9q/image/upload/v1721333282/techtackles_bg_cu77wp.png'); */
+    background-image: url('static/images/homepage_background.jpg');
     min-height: 100%;
     background-repeat: no-repeat;
     overflow: hidden;
     background-position-x: right;
     background-size: cover;
-    
-    
 }
 
 body {
@@ -102,21 +105,11 @@ body {
 }
 
 
-/* .brand {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #0d6915;
-} */
-
 .btn-signup,
 .btn-edit {
     background-color: #3864f5;
     color: #fff;
 }
-
-/* Styles for Ticket List */
-
-
 
 /* Styles for the comment form */
 #commentForm textarea {
@@ -134,16 +127,6 @@ thead {
     color: white;
     font-weight: bold;
 }
-
-/* .popup {
-    display: none; 
-    background-color: #f8d7da;
-    color: #1c7227;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #1f4405;
-    border-radius: 5px;
-} */
 
 .dark-primary {
     background-color: #6c757d; /* or any dark color you prefer */

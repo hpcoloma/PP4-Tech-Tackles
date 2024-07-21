@@ -87,7 +87,7 @@ class TicketDetailView(LoginRequiredMixin, DetailView):
             # Get the ticket object to check permissions
             obj = self.get_object()
         except Http404:
-            # If ticket is not found, use Django's default 404 handling
+            # If ticket is not found
             return render(request, 'support/404.html', status=404)
         
         logged_user = self.request.user
@@ -115,7 +115,7 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
         
     def form_valid(self, form):
         form.instance.user = self.request.user
-        messages.success(self.request, "Ticket was created successfully!")  # Add success message
+        messages.success(self.request, "Ticket was created successfully!")
         return super().form_valid(form)
     
     def get_success_url(self):

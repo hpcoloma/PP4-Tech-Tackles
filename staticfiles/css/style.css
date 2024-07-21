@@ -62,11 +62,11 @@ header {
 
 .home-page {
     background-image: url('https://res.cloudinary.com/doxcaxx9q/image/upload/v1721577297/homepage_background_nlfxe7.jpg');
-    min-height: 100%;
+    /* height: 70vh;
     background-repeat: no-repeat;
     overflow: hidden;
     background-position-x: right;
-    background-size: cover;
+    background-size: contain; */
 }
 
 body {

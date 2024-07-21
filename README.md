@@ -503,7 +503,44 @@ Ticket List view with filter status functionality
 ### Comment Delete
 ![Comment Delete](static/images/site_commentdelete.png)
 
-## Future Feature Considerations
+## Future Enhancements
+It is essential to plan for the future by considering potential features that can enhance Tech Tackle's functionality, usability and overall user experience. To remain competitive and adaptable to the changing needs of users, below are future feature considerations thta can be integrated to ensure continued growth of this application.
+
+- **Customizable User Profiles**
+  - **Feature:** Allow users to customize their profiles with additional information.
+  - **Benefits:** Enhances user engagement and personalization. 
+  - **Example:** Users can upload profile pictures, add bio information, company roles and set notification preferences.
+- **Advanced Search and Filtering**
+  - **Feature:** Implement advanced search and filtering options for tickets.
+  - **Benefits:** Users can easily find specific tickets based on criteria like date range, status, user, keywords, etc.
+  - **Example:** A search bar with dropdown filters for status, user, date 
+  range, and keywords.
+- **Notification System**
+  - **Feature:** Develop a notification system for ticket updates.
+  - **Benefits:** Users and staff will receive real-time notifications for ticket status changes, new comments, or assigned tickets.
+  - **Example:** Email notifications, in-app notifications, or push notifications.
+- **Analytics Dashboard**
+  - **Feature:** Create an analytics dashboard to display ticket statistics.
+  - **Benefits:** Provides insights into ticket trends, user activity, and system performance.
+  - **Example:** Charts and graphs showing the number of open tickets, average resolution time, most common issues, etc.
+- **Mobile App Integration**
+  - **Feature:** Develop a mobile app or ensure the web application is fully responsive.
+  - **Benefits:** Increases accessibility, allowing users to manage tickets on the go.
+  - **Example:** A mobile-friendly interface or dedicated mobile app for both Android and iOS platforms.
+- **Ticket Assignment Automation**
+  - **Feature:** Automate ticket assignment based on predefined rules.
+  - **Benefits:** Reduces manual workload and ensures tickets are assigned to the appropriate staff member.
+  - **Example:** Automatically assign tickets based on the issue type, department, or staff availability.
+- **Feedback and Rating System**
+  - **Feature:** Implement a feedback and rating system for resolved tickets.
+  - **Benefits:** Gathers user feedback on support quality and identifies areas for improvement.
+  - **Example:** After ticket resolution, users can rate their experience and leave feedback.
+- **Knowledge Base Integration**
+  - **Feature:** Integrate a knowledge base where users can find solutions to common issues.
+  - **Benefits:** Reduces the number of support tickets by providing self-help resources.
+  - **Example:** Articles, FAQs, and how-to guides accessible within the platform.
+
+
 ## Testing
   - User Story Testing
   - Automated testing
@@ -587,67 +624,54 @@ To ensure the TECH TACKLES IT Support Ticketing System is developed effectively 
   - Admin and tech support can manage tickets.
   - Admin django  for user and ticket management.
 
-#### Iteration 5: Notification System and UX Improvements
+#### Iteration 5: Testing and Bug Fixing
 - Goals:
-  - Implement a notification system for success and error messages.
-  - Improve the user interface and experience.
+  - Ensure the system is fully functional and bug-free.
 - Tasks:
-  - Integrate Django messages framework for notifications.
-  - Create custom JavaScript for popup messages.
-  - Improve CSS for better layout and design.
-  - Test the notification system and UI.
+  - Perform comprehensive testing of all features.
+  - Fix any bugs or issues found during testing.
+  - Ensure all user stories are met.
 - Deliverables:
-  - Functional notification system for user actions.
-  - Improved UI with responsive design.
+  - Fully tested and functional IT support ticketing system.
+  - Documentation for testing procedures and results.
 
-#### Iteration 6: Testing and Bug Fixing
+#### Iteration 6: Deployment and Documentation
 - Goals:
-
-  Ensure the system is fully functional and bug-free.
+  - Deploy the application to a production environment.
+  - Create comprehensive documentation.
 - Tasks:
-
-  Perform comprehensive testing of all features.
-  Fix any bugs or issues found during testing.
-  Ensure all user stories are met.
+  - Set up and configure the production environment.
+  - Deploy the application.
+  - Write detailed documentation for installation, usage, and contribution.
+  - Create a README file with all necessary information.
 - Deliverables:
-
-  Fully tested and functional IT support ticketing system.
-  Documentation for testing procedures and results.
-#### Iteration 7: Deployment and Documentation
-- Goals:
-
-  Deploy the application to a production environment.
-  Create comprehensive documentation.
-- Tasks:
-
-  Set up and configure the production environment.
-  Deploy the application.
-  Write detailed documentation for installation, usage, and contribution.
-  Create a README file with all necessary information.
-- Deliverables:
-
-  
-  Deployed application.
-  Comprehensive documentation and README.
+  - Deployed application.
+  - Comprehensive documentation and README.
 #### Iteration 8: Feedback and Iteration
 - Goals:
-
-  Gather feedback from users and stakeholders.
-  Implement improvements based on feedback.
+  - Get feedback from mentor and potential user.
+  - Implement improvements based on feedback.
 - Tasks:
-
-  Collect feedback through surveys or user testing sessions.
-  Prioritize and implement changes based on feedback.
-  Plan for future iterations or updates.
+  - Prioritize and implement changes based on feedback.
+  - Plan for future iterations or updates.
 - Deliverables:
+  - Updated application with improvements based on feedback.
 
-  Feedback report.
-  Updated application with improvements based on feedback.
-#### Continuous Improvement
-Even after the initial development and deployment, continuous improvement is key. Regularly gather feedback, monitor the application's performance, and plan for future updates and new features to ensure TECH TACKLES continues to meet user needs effectively.
-
-By following this agile approach with clear iterations, we ensure that the development of the TECH TACKLES IT Support Ticketing System is structured, efficient, and responsive to user needs.
 ## Bugs and Potential issues
+- Bootstrap CSS and JavaScript Loading Issues
+  - Problem: The application has encountered issues loading Bootstrap CSS and JavaScript files correctly, resulting in error like:
+    
+    'Uncaught TypeError: Cannot read properties of undefined (reading 'backdrop').'
+  - Steps taken to Resolve:
+    - Checked the CDN URL directly in the browser by verifying that the url  "https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" displays raw CSS instead of HTM or error page. URL is accessible.
+    - Verified Integrity attribute. I used the [SRI Hash Generator](https://www.srihash.org/) to verify the hash.
+    - Checked Cross-Origin Attribute: Confirmed that the crossorigin="anonymous" attribute is used correctly, which is necessary for CORS with CDNs.
+    - Attempted to Use Local Bootstrap File:
+      - Downloaded the Bootstrap CSS file and placed it in the static folder of the project. - Updated the URL paths in the template accordingly.
+      - Ran python manage.py collectstatic to ensure the static files are collected and served properly.
+      - Encountered issues with local file serving, potentially due to misconfiguration or incorrect file paths.
+
+![Bootstrap Error](static/images/bugs_js.PNG)
 
 ## Technologies and language
 ## Development

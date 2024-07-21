@@ -6,6 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
     deleteTicketButtons.forEach(button => {
         button.addEventListener('click', function () {
             const ticketId = this.getAttribute('data-ticket-id');
+            const ticketStatus = this.getAttribute('data-ticket-status');
+
+            if (ticketStatus === 'In Progress') {
+                alert('Ticket is in progress, you cannot delete this ticket.');
+                return;
+            }         
+            
             const deleteForm = document.getElementById('deleteForm');
             const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
 
@@ -20,17 +27,16 @@ document.addEventListener('DOMContentLoaded', function () {
             const commentId = this.getAttribute('data-comment-id');
             const deleteForm = document.getElementById('deleteCommentForm');
             const deleteModal = new bootstrap.Modal(document.getElementById('deleteCommentModal'));
-
             deleteForm.action = `/comment/${commentId}/delete/`;
             deleteModal.show();
         });
     });
-});
 
 
-document.addEventListener('DOMContentLoaded', function () {
+// document.addEventListener('DOMContentLoaded', function () {
     const editCommentButtons = document.querySelectorAll('.edit-comment-btn');
-    const editCommentModal = new bootstrap.Modal(document.getElementById('editCommentModal'));
+    const editCommentModalElement = document.getElementById('editCommentModal');
+    const editCommentModal = new bootstrap.Modal(editCommentModalElement);
     // const editCommentForm = document.getElementById('editCommentForm');
     const editCommentId = document.getElementById('editCommentId');
     const editCommentText = document.getElementById('editCommentText');

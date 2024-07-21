@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // const editCommentForm = document.getElementById('editCommentForm');
     const editCommentId = document.getElementById('editCommentId');
     const editCommentText = document.getElementById('editCommentText');
-
     editCommentButtons.forEach(button => {
         button.addEventListener('click', function () {
             const commentId = this.getAttribute('data-comment-id');

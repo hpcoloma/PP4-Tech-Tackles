@@ -483,11 +483,26 @@ To create a user-friendly application that is designed to streamline and simplif
 ### Responsive Nav
 ![Responsive Nav](static/images/site_responsivenav.PNG)
 
--**Home Page**
+### Create Ticket
+![Create Ticket](static/images/site_createticket.PNG)
 
--**Home Page**
+### Ticket List
+Ticket List view with filter status functionality
+![Ticket List](static/images/site_filter.png)
 
--**Home Page**
+### Ticket Detail
+
+![Ticket Detail](static/images/site_ticketdetailview.PNG)
+
+### Ticket Delete
+![Ticket Delete](static/images/site_ticketdelete.png)
+### Ticket Edit
+![Ticket Edit](static/images/site_ticketupdate.PNG)
+### Comment Edit
+![Comment Edit](static/images/site_commentedit.png)
+### Comment Delete
+![Comment Delete](static/images/site_commentdelete.png)
+
 ## Future Feature Considerations
 ## Testing
   - User Story Testing
@@ -505,102 +520,86 @@ To create a user-friendly application that is designed to streamline and simplif
     - Crossbrowser testing
 ## Agile Development
 
-To ensure the TECH TACKLES IT Support Ticketing System is developed effectively and efficiently, we will follow an agile approach. This will involve iterative development cycles (sprints) where we continuously build, test, and refine the system. Here's how we can break down the development process into iterations:
+To ensure the TECH TACKLES IT Support Ticketing System is developed effectively and efficiently, I followed an agile approach. This involved iterative development cycles (sprints) where I continuously build, test, and refine the system. Here's how I can break down the development process into iterations:
 
 #### Iteration 0: Planning and Setup
 - Goals:
+  - Define project objectives, user stories, and initial requirements.
+  - Set up the development environment.
+  - Create initial project structure and repository.
 
-Define project objectives, user stories, and initial requirements.
-Set up the development environment.
-Create initial project structure and repository.
-T
 - Tasks:
-
-Create and initialize a Git repository.
-Set up Django project and application.
-Configure Django AllAuth for user authentication.
-Create initial models for User, Ticket, and Comment.
-Set up static files and templates structure.
+  - Create and initialize a Git repository.
+  - Set up Django project and application.
+  - Create database and connect the database.
+  - Create initial models for User, Ticket, and Comment.
+  - Configure Django AllAuth for user authentication.
+  - Set up static files and templates structure.
 
 #### Iteration 1: User Authentication and Role Management
-
 - Goals:
-
-  Implement user authentication.
-  Define and implement user roles (Admin, User, Tech Support).
+  - Implement user authentication.
+  - Define and implement user roles (Admin, User, Tech Support).
 - Tasks:
-
-  Implement login, signup, and logout functionality using Django AllAuth.
-  Create user roles and permissions.
-  Implement user management in the admin dashboard.
-  Test user authentication and role management.
+  - Implement login, signup, and logout functionality using Django AllAuth.
+  - Create user roles and permissions.
+  - Implement user management in the admin dashboard.
+  - Test user authentication and role management.
 - Deliverables:
-
-  Functional user authentication system.
-  User roles and permissions implemented.
-  Basic admin interface for user management.
+  - Functional user authentication system.
+  - User roles and permissions implemented.
+  - Basic admin interface for user management.
 
 #### Iteration 2: Ticket Management
 - Goals:
-
-  Implement ticket creation, viewing, and listing.
+  - Implement ticket creation, viewing, and listing.
 - Tasks:
-
-  Create forms for ticket creation and updating.
-  Implement views for creating, listing, and viewing tickets.
-  Implement ticket status (Open, In Progress, Closed).
-  Test ticket creation and viewing functionalities.
+  - Create forms for ticket creation and updating.
+  - Implement views for creating, listing, and viewing tickets.
+  - Implement ticket status (Open, In Progress, Closed).
+  - Test ticket creation and viewing functionalities.
 - Deliverables:
-
-  Functional ticket creation form.
-  List view of tickets with status filters.
-  Detail view for individual tickets.
+  - Functional ticket creation form.
+  - List view of tickets with status filters.
+  - Detail view for individual tickets.
 
 #### Iteration 3: Commenting and Interaction
 - Goals:
-
-  Implement ticket commenting system.
-  Ensure interaction between users and tech support through comments.
+  - Implement ticket commenting system.
+  - Ensure interaction between users and tech support through comments.
 - Tasks:
-
-  Create comment model and forms.
-  Implement views for adding and viewing comments.
-  Restrict comment access based on user roles.
-  Test commenting functionality.
+  - Create comment model and forms.
+  - Implement views for adding and viewing comments.
+  - Restrict comment access based on user roles.
+  - Test commenting functionality.
 - Deliverables:
+  - Functional commenting system.
+  - Users can add comments to their own tickets.
+  - Tech support can add comments to all tickets.
 
-  Functional commenting system.
-  Users can add comments to their own tickets.
-  Tech support can add comments to all tickets.
 #### Iteration 4: Admin and Tech Support Features
 - Goals:
-
-  Implement additional features for admin and tech support users.
+  - Implement additional features for admin and tech support users.
 - Tasks:
-
-  Allow tech support to edit and delete tickets.
-  Enable admin to assign tickets to tech support.
-  Implement admin dashboard for ticket management.
-  Test admin and tech support features.
+  - Allow tech support to edit and delete opena nd in progress tickets.
+  - Test admin and tech support features.
 - Deliverables:
+  - Admin and tech support can manage tickets.
+  - Admin django  for user and ticket management.
 
-  Admin and tech support can manage tickets.
-  Admin dashboard for user and ticket management.
 #### Iteration 5: Notification System and UX Improvements
 - Goals:
-
-  Implement a notification system for success and error messages.
-  Improve the user interface and experience.
+  - Implement a notification system for success and error messages.
+  - Improve the user interface and experience.
 - Tasks:
-
-  Integrate Django messages framework for notifications.
-  Create custom JavaScript for popup messages.
-  Improve CSS for better layout and design.
-  Test the notification system and UI.
+  - Integrate Django messages framework for notifications.
+  - Create custom JavaScript for popup messages.
+  - Improve CSS for better layout and design.
+  - Test the notification system and UI.
 - Deliverables:
+  - Functional notification system for user actions.
+  - Improved UI with responsive design.
 
-  Functional notification system for user actions.
-  Improved UI with responsive design.
 #### Iteration 6: Testing and Bug Fixing
 - Goals:
 

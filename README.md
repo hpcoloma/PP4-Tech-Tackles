@@ -1,9 +1,22 @@
-# Tech Tackles- IT Support Ticketing System with Knowledge Base
+# Tech Tackles- IT Support Ticketing System
+
+![AmIResponsive](static/images/amiresponsive.PNG)
 
 # Table of Contents
+- [Project Introduction](#project-introduction)
+  - [Tech Tackles](#screenshot)
+  - [Link to Live Project](#link-to-live-project)
+  - [Objective](#objective)
+- [UX/UI Design](#uxui)
+  - [The Strategy Plane](#the-strategy-plane)
+  - [The Scope Plane](#the-scope-plane)
+  - [The Skeleton Plane](#the-skeleton-plane)
+  - [The Structure Plane]()
+  - [The Surface Plane]()
 
 
-## Project Overview
+
+## Project Introduction
 
 Welcome to Tech Tackles, your go-to IT Support Ticketing System designed to streamline and simplify your IT support processes. Our system is built to help organizations efficiently manage and resolve IT-related issues.
 
@@ -11,119 +24,259 @@ Our IT Support Ticketing System is crafted to provide a user-friendly platform f
 
 With an intuitive web interface, users can easily submit tickets, track progress, and communicate with IT specialists.
 
-The project will include front-end development with HTML, CSS, and JavaScript, and back-end development using Python and Django
+The project will include front-end development with HTML, CSS, and JavaScript, and back-end development using Python and Django.
 
-### Screenshots
+## ![screenshot](static/images/screenshot.PNG)
 
-
-
-
-### [Link to Live project](https://pp4-techtackles-by-hc-ed362e72006b.herokuapp.com/tickets/)
+### [Link to Live project](https://pp4-techtackles-by-hc-ed362e72006b.herokuapp.com/)
 
 ### Objective
+The objective of this project is to develop a comprehensive IT asset management application to assist IT administrators in efficiently managing their IT assets. This application will be designed using a combination of front-end and back-end technologies, including HTML, CSS, JavaScript, Python, and Django
 
-## UX/UI
+## UX/UI Design
 ### The Strategy Plane
 
-VISION
-To create a user-friendly applicatopm that is designed to streamline and simplify and enhances the efficiency of IT support processes, improves user satisfaction, and reduces resolution times.
+#### VISION
 
-OBJECTIVES
+To create a user-friendly application that is designed to streamline and simplify and enhances the efficiency of IT support processes, improves user satisfaction, and reduces resolution times.
+
+#### OBJECTIVES
 - Streamline the process of ticket submission and management.
-- Enhance collaboration among IT support staff for faster problem resolution.
-- Enable administrators to manage the system efficiently with advanced tools and reporting capabilities.
+- Enhance IT support staff collaboration.
+- Enable administrators to manage the system efficiently.
 
-USER NEEDS
+#### USER NEEDS
 - End-Users (Employees/Customers)
-    - Easy Ticket Submission: Simple and quick process to submit support tickets.
-    - Self-Service Solutions: Access to a comprehensive knowledge base for common issues and FAQs.
-    - Feedback Mechanism: Ability to provide feedback on the support received.
+    - Easy Ticket Submission, simple and quick process to submit support tickets.
       
 - IT Support Staff
-    - Efficient Ticket Management: Tools to prioritize and manage tickets effectively.
-    - Access to Information: Quick access to Knowledge base and relevant information for troubleshooting.
+    - Efficient tools for ticket management.
 
 - Administrators
     - User Management: Tools to manage users and roles effectively.
-    - Ticket Management: Ability to update, assign and delete tickets
-
+    - Ticket Management: Ability to update and delete tickets
 
 ### The Scope Plane 
-FUNCTIONS
-- End User
-  - Ticket Submission:
-    - Simple form for submitting support tickets.
-    - Fields: Issue Description, Category, Urgency, Attachments.
-    - Auto-suggestions from the knowledge base while typing.
-
-  - Knowledge Base Access:
-    - Search functionality for finding articles.
-    - Categories and tags for easy navigation.
-    - Article ratings and feedback options.
-
-  - Ticket Status Updates:
-    - Dashboard showing submitted tickets and their statuses.
-    - Real-time notifications for updates and resolutions.
-
-- IT Support Staff
- - Ticket Management:
-    - Dashboard with all tickets sorted by status (new, in-progress, resolved).
-    - Filters for priority, category, date, and assigned staff.
+#### FEATURES
+- User Management
+  - User Registration and Login (via Django AllAuth)
+  - Profile Management (Admin, User, Tech Support roles)
   
-  - Prioritization and Assignment:
-    - Ability to prioritize tickets based on urgency and impact.
-    - Assign tickets to specific team members.
+- Ticket Management:
+  - Ticket Creation, Viewing, and Deletion
+  - Ticket Editing (by owner or tech support)
+  - Ticket Status Updates (Open, In Progress, Closed)
+  - Commenting on Tickets (with editing and deletion options)
+  
+- Comment Management:
+  - Adding comments to tickets
+  - Editing and deleting comments
+  - Viewing comments in a modal window
 
-- Internal Collaboration:
-    - Internal notes and comments section within each ticket.
-    - Notifications for ticket updates and collaboration messages.
+- Notification System:
+  - Popup messages for ticket updates, delete and comment actions
 
-- Knowledge Base Contributions:
-    - Tools to create, edit, and categorize knowledge base articles.
-    - Option to mark tickets as candidates for new knowledge base articles.
+- Admin Panel:
+  - Managing users and roles
+  - Viewing all tickets and comments
 
-- Administrator
-  - User Management:
-    - Add, remove, and manage user roles and permissions.
-    - Configure different access levels for end-users, support staff, and administrators.
+- Filtering:
+  - Filtering tickets by status
 
-  - System Configuration:
-    - Customize ticket form templates.
-    - Configure email notifications and templates.
+#### FUNCTIONAL SPECIFICATIONS
+- User Registration and Login:
+  - Implemented using Django AllAuth
+  - Registration form with email verification
+  - Login with email and password
 
-CONTENTS
-- Knowledge Base
-  - Initial Articles
-      - Common issues and resolutions
-      - FAQ troubleshooting guides
-  - Ongoing Contribution
-    - Regular updates and additions based on new issues and solutions.
-    - User feedback integration for improving existing articles.
+- Profile Management:
+  - Edit profile information (name, email, password)
+  - View user roles and permissions
+  - Admin interface for role management
 
-- Documentation
-  - End User Guides
-     - How to search the knowledge base.
-     - How to submit a ticket.
-     - Understanding ticket status update
-  - IT Support Staff Manuals
-    - How to manage and prioritize tickets.
-    - Using the internal collaboration tools.
-    - Contributing to the knowledge base.
-  - Administrator Manuals
-    - Managing user roles and permissions.
-    - System configuration and customization.
+- Ticket Management:
+  - Ticket creation form with subject and description
+  - Ticket detail view with all ticket information and comments
+  - Edit and delete options for tickets
+  - Status update options available to tech support
 
+- Comment Management:
+  - Form for adding new comments
+  - Edit and delete options for comments (in a modal window)
+  - Display comments in the ticket detail view
 
-### The Structure Plane - defines the layout and navigation of your product, as well as the interaction patterns and feedback mechanisms that enable users to achieve their goals. how will your product work and how will users move through it?
-- User Story/Acceptance Criteria
-- User Story/Acceptance Criteria
-- User Story/Acceptance Criteria
-- User Story/Acceptance Criteria
-- User Story/Acceptance Criteria
-- EPICS
+- Notification System:
+  - JavaScript for showing popup messages
+  - Backend logic for setting success or error messages
+  
+- Admin Panel:
+  - Django admin interface for user and ticket management
+  - Advanced search and filtering options
 
-### The Skeleton Plane - defines the visual hierarchy and aesthetics of your product, as well as the typography, color, imagery, and icons that convey meaning and emotion. how will your product look and feel and how will users perceive it?
-- Wireframe 
+- Filtering:
+  - Dropdowns or filters for ticket status
+
+#### USER STORIES
+
+As a User:
+  - I want to register for an account so that I can submit and track support tickets.
+  -  I want to log in to my account, so that I can access the IT Support Ticketing System.
+  - I want to submit ticket so that I can get help with my issues.
+  - I want to view my submitted tickets, so that I can track their status.
+  - I want to edit my submitted tickets with status open, so that I can update the information if necessary.
+  - I want to view all comments on my own ticket so that I can track support responses and updates.
+- I want to add comments to my tickets so that I can communicate with support if I have follow up questions that relates to the ticket's subject.
+- I want to edit my comment so that I can correct or update the information.
+- I want to delete my submitted tickets with status open, so that I can remove requests that are no longer needed or relevant.
+- I want to log out of my account so that I can ensure my account is secure when I'm not using it.
+
+As a tech support:
+  - I want to manage all tickets so that I can resolve issues.
+  - I want to change the status of open and in progress tickets so that I can manage the progress of support requests.
+  - I want to add comments to open and in progress tickets so that I can communicate with user of the resolution relevant to the ticket's subject
+  - I want to edit comments on tickets so that I can provide accurate information and updates
+  - I want to manage all tickets so that I can resolve issues.
+  - I want to delete my comments on open and in progress tickets so that I can remove inappropriate or irrelevant content
+
+As an admin:
+  - I want to manage user accounts in the admin panel so that I can add, edit, or delete users
+  - I want to view all tickets and comments so that I can oversee support activities.
+  - I want to manage user roles so that I can control access to the system.
+
+### The Skeleton Plane 
+#### LAYOUT STRUCTURE
+
+Home Page:
+  - Header: Navigation bar with links to Register, Login, and (if authenticated) Logout.
+  - Main Section: Brief introduction to Tech Tackles.
+  - Footer: Copyright information and social media links.
+
+Login Page:
+  - Header: Navigation bar with links to Register, and Login.
+  - Main Section: Login form with username and password fields, and a "Log In" button.
+  - Footer: Copyright information and social media links.
+
+Register Page:
+  - Header: Navigation bar with links to Register, and Login.
+  - Main Section: Registration form with fields for username, email, and password, password confirmation and a "Register" button.
+  - Footer: Copyright information and social media links.
+
+User Dashboard (after login):
+  - Header: Navigation bar with links to All Tickets (if staff or admin), My Tickets (if user)  and Logout.
+  - Main Section: Links to Create Ticket, Filter by Status, Table with a list of tickets showing Ticket ID, Status, Subject, Created On (date only), and User.
+  - Footer: Copyright information and social media links.
+
+Ticket Detail Page:
+  - Header: Navigation bar.
+  - Main Section:
+    - Ticket details: Ticket ID, Submitted by, Created On, Updated On, Status, Subject, Details.
+    - Edit/Delete options for ticket (if allowed).
+    - List of comments with edit/delete options for each comment (if allowed).
+    - Form to add a new comment.
+  
+### The Structure Plane
+
+#### INFORMAITON ARCHITECTURE
+
+Global Navigation:
+  - Register (visible when not logged in)
+  - Login (visible when not logged in)
+  - Logout (visible when logged in)
+  - All Tickets (visible to tech support and admins)
+  - My Tickets (visible to user)
+
+#### CONTENT ORGANIZATION
+
+Home Page:
+  - Welcome message
+  - Links to register or login
+
+Login Page:
+  - Form with email and password fields
+
+Register Page:
+  - Form with fields for email, username, and password
+
+Ticket List Page:
+  - Table of tickets with columns for Ticket ID, Status, Subject, Created On (date only), and User
+
+Ticket Detail Page:
+  - Detailed view of the selected ticket
+  - List of comments
+  - Form to add new comments
+  - Edit/Delete options for ticket and comments (if allowed)
+
+#### INTERFACE ELEMENTS:
+Forms:
+  - User Registration Form: Input validation for email, username, password and password confirmation fields
+  - Login Form: Input validation for email and password fields
+  - Ticket Form: Input validation for subject and description fields and status (hidden field or dropdown for tech support).
+  - Comment Form:  Input validation for comment text
+
+Buttons:
+  - Primary buttons for actions like "Register", "Log In", "Logout", "Create Ticket", "Submit", "Edit", "Delete", "Next", "Last", "First", and "Previous".
+  - Secondary buttons for action like "Cancel", "Close", and "Save Changes".
+
+Tables:
+  - Ticket List: Columns for Ticket ID, Status, Subject, Created On (date only), and User. Clickable rows to view ticket details, pagination.
+  - Ticket List for Mobile: Columns for Ticket ID and Status.
+
+Modals:
+  - For editing comments to avoid navigating away from the ticket detail page. Opens when the "Edit" button is clicked on a comment, contains the comment text pre-filled, and has a save button to update the comment
+  - For deleting ticket and comments.
+
+Alerts:
+  - For success and error messages, displayed using Bootstrap alerts for actions like creating tickets, adding comments, updating tickets, etc..
+  - For Access Denied and 404 Error using a customised page.
+
+#### CONTENT REQUIREMENTS:
+Home Page Content:
+  - Brief introduction to Tech Tackles
+  - Links to register or login
+
+Login Page Content:
+  - Login form with fields for email and password
+  - Link to the registration page
+
+Register Page Content:
+  - Registration form with fields for email, username, and password
+
+Ticket List Page Content:
+  - Table displaying tickets with columns for Ticket ID, Status, Subject, Created On (date only), and User
+  - Links to view ticket details
+
+Ticket Detail Page Content:
+  - Detailed view of the selected ticket with fields like Ticket ID, Submitted - by, Created On, Updated On, Status, Subject, and Description
+  - List of comments associated with the ticket
+  - Form to add new comments
+  - Edit/Delete options for ticket and comments (if allowed)
+
+#### INTEACTION DESIGN:
+Ticket Creation:
+  - User fills out the ticket form and submits.
+  - System validates input and creates a ticket.
+  - Success message is shown.
+  - System will display newly created ticket with an option to edit/delete.
+
+Editing Ticket:
+  - User clicks "Edit" on a ticket
+  - Redirect to a page to update ticket with the text pre-filled.
+  - User updates the ticket with the option to update status if admin/staff and then save changes
+  - System validates and updates the ticket.
+  - Success message is shown, and the updated ticket is displayed.
+
+Commenting:
+  - User adds a comment via the form.
+  - System validates input and adds the comment.
+  - Comment appears below the ticket details with an option to edit/delete (if allowed).
+
+Editing Comments:
+  - User clicks "Edit" on a comment.
+  - Modal opens with the comment text pre-filled.
+  - User updates the comment and saves changes.
+  - System validates and updates the comment.
+  - Success message is shown, and the updated comment is displayed.
+
 -	Flowchart/Database Schema - https://drawsql.app/ Entity Relationship Diagram
 
 ### The Surface Plane - the actual interface that users see and interact with

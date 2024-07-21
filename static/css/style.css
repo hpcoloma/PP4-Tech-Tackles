@@ -73,9 +73,7 @@ body {
     background: #ffffff no-repeat;
     min-height: 100vh;
     margin: 0;
-    padding: 0;
-    /* overflow: auto; */
-    
+    padding: 0;    
 }
 
 .welcome-card {
@@ -85,7 +83,7 @@ body {
     left: 50%; 
     transform: translate(-50%, -50%); /* Center both horizontally and vertically */
     width: 70vw;
-    margin: 2px; /* Apply the existing margin */
+    margin: 2px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(108, 117, 125, 0.1);
 }
@@ -104,11 +102,11 @@ body {
 }
 
 
-.brand {
+/* .brand {
     font-size: 1.4rem;
     font-weight: 700;
     color: #0d6915;
-}
+} */
 
 .btn-signup,
 .btn-edit {
@@ -137,15 +135,15 @@ thead {
     font-weight: bold;
 }
 
-.popup {
-    display: none; /* Initially hide the popup */
+/* .popup {
+    display: none; 
     background-color: #f8d7da;
     color: #1c7227;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #1f4405;
     border-radius: 5px;
-}
+} */
 
 .dark-primary {
     background-color: #6c757d; /* or any dark color you prefer */
@@ -160,7 +158,7 @@ thead {
 }
 
 /* Media query for mobile views */
-@media (max-width: 768px) {
+@media (max-width: 768px) { 
     .welcome-card {
         width: 90vw;
     }

@@ -6,13 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     deleteTicketButtons.forEach(button => {
         button.addEventListener('click', function () {
             const ticketId = this.getAttribute('data-ticket-id');
-            const ticketStatus = this.getAttribute('data-ticket-status');
-
-            if (ticketStatus === 'In Progress') {
-                alert('Ticket is in progress, you cannot delete this ticket.');
-                return;
-            }         
-            
             const deleteForm = document.getElementById('deleteForm');
             const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
 

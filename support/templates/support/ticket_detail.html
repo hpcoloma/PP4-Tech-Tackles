@@ -58,43 +58,44 @@
         <div class="card mb-4">
             <div class="card-body p4">
                 <h4>Comments:</h4>
-                    <ul class="list-unstyled">
-                        {% for comment in comments %}
-                        <div class="d-flex flex-column shadow-sm p-3 mb-4 bg-white rounded">
-                                <p class="mb-2">{{ comment.comment|linebreaks }}</p>
-                                {% if comment.created_on|date:"Y-m-d H:i:s" != comment.updated_on|date:"Y-m-d H:i:s" %}
-                                <small class="text-muted">Updated on: {{ comment.updated_on }}</small>
+                <ul class="list-unstyled">
+                    {% for comment in comments %}
+                    <li class="d-flex flex-column shadow-sm p-3 mb-4 bg-white rounded">
+                        <p class="mb-2">{{ comment.comment }}</p>
+                        {% if comment.created_on|date:"Y-m-d H:i:s" != comment.updated_on|date:"Y-m-d H:i:s" %}
+                        <small class="text-muted">Updated on: {{ comment.updated_on }}</small>
+                        {% endif %}
+
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="d-flex flex-row align-items-center">
+                                <!-- Conditional logic to choose avatar based on user type -->
+                                {% if comment.user.is_staff %}
+                                    <img src="https://res.cloudinary.com/doxcaxx9q/image/upload/v1721431472/help-desk_dhu2s7.png" alt="avatar" width="30" height="30" class="rounded-circle">
+                                {% else %}
+                                    <img src="https://res.cloudinary.com/doxcaxx9q/image/upload/v1721431472/user_gbeusu.png" alt="avatar" width="30" height="30" class="rounded-circle">
                                 {% endif %}
-                                
-                                <li class="d-flex justify-content-between align-items-start mb-3">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <!-- Conditional logic to choose avatar based on user type -->
-                                        {% if comment.user.is_staff %}
-                                            <img src="https://res.cloudinary.com/doxcaxx9q/image/upload/v1721431472/help-desk_dhu2s7.png" alt="avatar" width="30" height="30" class="rounded-circle" />
-                                        {% else %}
-                                            <img src="https://res.cloudinary.com/doxcaxx9q/image/upload/v1721431472/user_gbeusu.png" alt="avatar" width="30" height="30" class="rounded-circle" />
-                                        {% endif %}
-                                        <div class="ms-2">
-                                            <p class="mb-0"><strong>{{ comment.user.username }}</strong></p>
-                                            <p class="small text-muted mb-0">{{ comment.created_on }}</p>
-                                        </div>
-                                    </div>
-                                    {% if user == comment.user or user.is_staff %}
-                                    {% if ticket.status != 'Closed' %}
-                                    <div class="mt-2">
-                                        {% if user == comment.user %}
-                                        <button class="btn btn-primary btn-sm me-2 edit-comment-btn" data-bs-toggle="modal" data-bs-target="#editCommentModal" data-comment-id="{{ comment.id }}" data-comment="{{ comment.comment }}">Edit</button>
-                                        {% endif %}
-                                        <button class="btn btn-danger btn-sm delete-comment-button" data-comment-id="{{ comment.id }}">Delete</button>
-                                    </div>
-                                    {% endif %}
+                                <div class="ms-2">
+                                    <p class="mb-0"><strong>{{ comment.user.username }}</strong></p>
+                                    <p class="small text-muted mb-0">{{ comment.created_on }}</p>
+                                </div>
+                            </div>
+                            {% if user == comment.user or user.is_staff %}
+                            {% if ticket.status != 'Closed' %}
+                            <div class="mt-2">
+                                {% if user == comment.user %}
+                                <button class="btn btn-primary btn-sm me-2 edit-comment-btn" data-bs-toggle="modal" data-bs-target="#editCommentModal" data-comment-id="{{ comment.id }}" data-comment="{{ comment.comment }}">Edit</button>
                                 {% endif %}
-                                </li>
+                                <button class="btn btn-danger btn-sm delete-comment-button" data-comment-id="{{ comment.id }}">Delete</button>
+                            </div>
+                            {% endif %}
+                            {% endif %}
                         </div>
-                        {% endfor %}
-                    </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
+
 
         <!-- Creating New Comments -->
         <div class="card mb-4">
@@ -120,8 +121,8 @@
             </div>
         </div>
         {% endif %}
+    </div>
 </div>
-
 
 <!-- Edit Comment Modal -->
 <div class="modal fade" id="editCommentModal" tabindex="-1" aria-labelledby="editCommentModalLabel" aria-hidden="true">
@@ -171,8 +172,5 @@
         </div>
     </div>
 </div>
-
-
-
 {% endblock content %}
 

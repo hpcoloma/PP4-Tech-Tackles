@@ -25,12 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-
-// document.addEventListener('DOMContentLoaded', function () {
+    // Handle comment editing
     const editCommentButtons = document.querySelectorAll('.edit-comment-btn');
     const editCommentModalElement = document.getElementById('editCommentModal');
     const editCommentModal = new bootstrap.Modal(editCommentModalElement);
-    // const editCommentForm = document.getElementById('editCommentForm');
     const editCommentId = document.getElementById('editCommentId');
     const editCommentText = document.getElementById('editCommentText');
     editCommentButtons.forEach(button => {

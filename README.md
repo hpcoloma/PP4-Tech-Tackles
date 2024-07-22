@@ -139,6 +139,8 @@ To create a user-friendly application that is designed to streamline and simplif
 
 #### USER STORIES
 
+Tech Tackles project uses a [Kanban Board](https://github.com/users/hpcoloma/projects/10) to manage and track progress throughout the development cycle. The Kanban board visualizes work stages, from initial backlog through to completed tasks, facilitating efficient task management and smooth workflow. This approach allows me to prioritize tasks, track progress, and ensure that all features and improvements are delivered in a timely manner.
+
 - **As a User:**
   - I want to register for an account so that I can submit and track support tickets.
   - I want to log in to my account, so that I can access the IT Support Ticketing System.
@@ -421,6 +423,7 @@ To create a user-friendly application that is designed to streamline and simplif
 
 ### The Surface Plane
 #### COLOUR SCHEME
+![Colour Palette](static/images/colourpalette.jpeg)
   - **Primary Colors:**
     - Background Color: #ffffff (White) for general background
     - Primary Button Background: #3864f5 (blue)
@@ -434,6 +437,8 @@ To create a user-friendly application that is designed to streamline and simplif
     - Primary Text: #000000 (Black) for high contrast and readability
     - Secondary Text: #6c757d (Dark Grey) for less prominent text
     - Link Text: #3864f5 (blue)
+![Grid Contrast](static/images/color_gridcontrast.PNG)
+
   - **Buttons:**
     - Buttons:
       - Primary Button (e.g., Sign Up, Edit):
@@ -478,7 +483,7 @@ To create a user-friendly application that is designed to streamline and simplif
 
 #### IMAGES
 - **[Background]('https://t4.ftcdn.net/jpg/04/80/76/81/360_F_480768188_1kpegKWaXFQ5LwTwsQ6MwARFdsaxV1UU.jpg')** - From Adobe Stock.
-![Background for Home Page](static/images/techtackles_bg.png)
+![Background for Home Page](static/images/homepage_background.jpg)
 - **Logo** - Best viewed with white background. Image is a PNG with transaparent background. I designed this logo usinf Adobe Photoshop and put an icon that resembles an octopus. The logo name that sounds like "tentacles".
 ![Logo](static/images/techtackles_logo.png)
 
@@ -505,12 +510,17 @@ Ticket List view with filter status functionality
 
 ### Ticket Delete
 ![Ticket Delete](static/images/site_ticketdelete.png)
+
 ### Ticket Edit
 ![Ticket Edit](static/images/site_ticketupdate.PNG)
 ### Comment Edit
 ![Comment Edit](static/images/site_commentedit.png)
 ### Comment Delete
 ![Comment Delete](static/images/site_commentdelete.png)
+### Access Denied
+![Access Denied](static/images/site_access_denied.PNG)
+### 404! Error
+![Error Page](static/images/site_404.PNG)
 
 ## Future Enhancements
 It is essential to plan for the future by considering potential features that can enhance Tech Tackle's functionality, usability and overall user experience. To remain competitive and adaptable to the changing needs of users, below are future feature considerations thta can be integrated to ensure continued growth of this application.
@@ -551,7 +561,7 @@ It is essential to plan for the future by considering potential features that ca
 
 
 ## Testing
-  - Complete Testing documentation can be found [here]()
+  - Complete Testing documentation can be found [here](testing.md)
 ## Agile Development
 
 To ensure the TECH TACKLES IT Support Ticketing System is developed effectively and efficiently, I followed an agile approach. This involved iterative development cycles (sprints) where I continuously build, test, and refine the system. Here's how I can break down the development process into iterations:
@@ -669,6 +679,7 @@ To ensure the TECH TACKLES IT Support Ticketing System is developed effectively 
       - Encountered issues with local file serving, potentially due to misconfiguration or incorrect file paths.
 
 ![Bootstrap Error](static/images/bugs_js.PNG)
+  - Resolution: Despite the above steps taken, error on the browser still appearing. Conclusion is that this is down to the Bootstrap library that I dont have control with.
 
 ## Technologies and Language
 Tech Tackles is built using a combination of modern technologies and programming languages to ensure a robust and efficient application. Below is a list of the primary technologies and languages used in this project:
@@ -695,7 +706,6 @@ Tech Tackles is built using a combination of modern technologies and programming
   - **Cloudinary:** For managing media files like images.
   - **Font Awesome:** For scalable vector icons.
   - **Moment.js:** For parsing, validating, manipulating, and displaying dates and times in JavaScript.
-
 
 ## Development
 This application was develop in Code Institute Gitpod, hosted in GitHub and deployed in Heroku.
@@ -779,6 +789,9 @@ That's it! You've successfully cloned a repository from GitHub to your local mac
 I used the following sources to complete this project.
 
 - [W3School](https://w3schools.com) – code sources for python
+- [Materializecss](https://materializecss.com/collapsible.html) - code sources
+- [Jinja](https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-filters) - code sources
+- [MD Bootstrap](https://mdbootstrap.com/) - bootstrap tables
 - [Stackoverflow](https://stackoverflow.com/) - for codes, tips and answers to some q&a. 
 - [Eightshades Contrast Grid]() - checked the colour combination contrast
 - [Adobe Color](https://color.adobe.com) - created my palette by entering colors used on my website.
@@ -787,3 +800,7 @@ I used the following sources to complete this project.
 - [ChatGPT](https://openai.com/) - for codes, tips,documentation advice and answers to some q&a.
 
 ## Acknowledgement
+This project will not be live today without the help and support of the following people:
+
+1. Arnold Ambida - my husband, who looks after my 3 children while I do this course.
+2. Matt Bodden - my mentor who have made a significant impact on completing this projecs with all the tips and the encouragements.

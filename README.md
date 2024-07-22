@@ -802,7 +802,7 @@ I used the following sources to complete this project.
 - [Jinja](https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-filters) - code sources
 - [MD Bootstrap](https://mdbootstrap.com/) - bootstrap tables
 - [Stackoverflow](https://stackoverflow.com/) - for codes, tips and answers to some q&a. 
-- [Eightshades Contrast Grid]() - checked the colour combination contrast
+- [Eightshades Contrast Grid](https://contrast-grid.eightshapes.com/) - checked the colour combination contrast
 - [Adobe Color](https://color.adobe.com) - created my palette by entering colors used on my website.
 - [Adobe Stock Photos]() - for my background.
 - [Balsamiq](https://balsamiq.com/) - for wireframes

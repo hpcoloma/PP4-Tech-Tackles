@@ -22,7 +22,7 @@
 - [Developement](#development)
 - [Deployment on Heroku](#deployment)
 - [Credits](#credits)
-- [Acknowdledgements](#acknowledgement)
+- [Acknowledgements](#acknowledgement)
 
 
 ## Project Introduction
@@ -561,7 +561,7 @@ It is essential to plan for the future by considering potential features that ca
 
 
 ## Testing
-  - Complete Testing documentation can be found [here](testing.md)
+  - Complete Testing documentation can be found [here](TESTING.md)
 ## Agile Development
 
 To ensure the TECH TACKLES IT Support Ticketing System is developed effectively and efficiently, I followed an agile approach. This involved iterative development cycles (sprints) where I continuously build, test, and refine the system. Here's how I can break down the development process into iterations:

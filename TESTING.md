@@ -167,7 +167,7 @@ These tests cover critical functionalities including form validation, user permi
  - [techtackles/urls.py](static/images/testing/pep8_techtackles_urls.PNG)
  - [techtackles/views.py](static/images/testing/pep8_techtackles_views.PNG)
  - [techtackles/wsgi.py](static/images/testing/pep8_techtackles_wsgi.PNG)
- - [manage.py]()
+ - [manage.py](static/images/testing/pep8_manage.PNG)
  ## Lighthouse
  Click on the link to see results of Lighthouse testing
  ### Mobile

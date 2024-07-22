@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+
 class Custom404ViewTest(TestCase):
 
     def test_custom_404_view(self):

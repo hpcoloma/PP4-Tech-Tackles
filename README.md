@@ -318,7 +318,7 @@ To create a user-friendly application that is designed to streamline and simplif
 
 - **ERD Diagram**
 
-  -DIAGRAM HERE
+  ![ERD Diagram](static/images/erd.PNG)
 
 - **Key Points**
   - **User:**

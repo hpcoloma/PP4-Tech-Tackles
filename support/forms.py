@@ -1,6 +1,7 @@
 from django import forms
 from .models import Comment, Ticket
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
@@ -10,8 +11,8 @@ class CommentForm(forms.ModelForm):
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['subject','description']
-    
+        fields = ['subject', 'description']
+
     def clean(self):
         cleaned_data = super().clean()
 
@@ -27,7 +28,8 @@ class TicketUpdateForm(forms.ModelForm):
 
         # Determine field permissions based on user role
         if self.user:
-            if self.user.is_staff and not self.user.is_superuser:  # Tech support (staff but not admin)
+            # Tech support (staff but not admin)
+            if self.user.is_staff and not self.user.is_superuser:
                 self.fields['subject'].disabled = True
                 self.fields['description'].disabled = True
             elif self.user.is_superuser:  # Admin
@@ -43,5 +45,6 @@ class StatusFilterForm(forms.Form):
         ('In Progress', 'In Progress'),
         ('Closed', 'Closed'),
     )
-    status = forms.ChoiceField(choices=STATUS_OPTIONS, required=False, label='Filter by Status')
-            
+    status = forms.ChoiceField(
+        choices=STATUS_OPTIONS, required=False, label='Filter by Status'
+    )

@@ -22,7 +22,6 @@
             <form class="login" method="POST" action="{% url 'custom_login' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <!-- <button class="btn btn-primary" type="submit">Log In</button> -->
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}

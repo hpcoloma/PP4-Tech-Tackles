@@ -61,12 +61,12 @@ header {
 }
 
 .home-page {
-    background-image: url('https://res.cloudinary.com/doxcaxx9q/image/upload/v1721577297/homepage_background_nlfxe7.jpg');
-    height: 100vh;
+    background-image: url('https://res.cloudinary.com/doxcaxx9q/image/upload/v1721605429/homepage_background2_aimiz9.png');
+    min-height: 100%;
     background-repeat: no-repeat;
     overflow: hidden;
     background-position-x: right;
-    background-size: contain;
+    background-size: cover;
 }
 
 body {

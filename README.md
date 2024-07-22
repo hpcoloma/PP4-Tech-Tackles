@@ -12,7 +12,7 @@
   - [The Scope Plane](#the-scope-plane)
   - [The Skeleton Plane](#the-skeleton-plane)
   - [The Structure Plane](#the-structure-plane)
-  - [The Surface Plane](#the-surface-plane---the-actual-interface-that-users-see-and-interact-with)
+  - [The Surface Plane](#the-surface-plane)
 
 
 
@@ -542,19 +542,7 @@ It is essential to plan for the future by considering potential features that ca
 
 
 ## Testing
-  - User Story Testing
-  - Automated testing
-  - CI Python Linter – 
-  - Lighthouse
-  - Mobile
-  - Desktop
-  - W3C CSS Validator
-  - W3C HTML validator
-  - JSHint for Javascript
-  - Other Testing
-    - Functionality Testing
-    - Compatibility Testing – different devices
-    - Crossbrowser testing
+  - Complete Testing documentation can be found [here]()
 ## Agile Development
 
 To ensure the TECH TACKLES IT Support Ticketing System is developed effectively and efficiently, I followed an agile approach. This involved iterative development cycles (sprints) where I continuously build, test, and refine the system. Here's how I can break down the development process into iterations:
@@ -673,8 +661,120 @@ To ensure the TECH TACKLES IT Support Ticketing System is developed effectively 
 
 ![Bootstrap Error](static/images/bugs_js.PNG)
 
-## Technologies and language
+## Technologies and Language
+Tech Tackles is built using a combination of modern technologies and programming languages to ensure a robust and efficient application. Below is a list of the primary technologies and languages used in this project:
+### Frontend
+  - **HTML5:** For structuring the web pages and content.
+  - **CSS3:** For styling the web pages, including layout, design, and responsiveness.
+  - **JavaScript:** For interactive features and client-side logic.
+      - **jQuery:** For simplified DOM manipulation and event handling.
+      - **Bootstrap:** For responsive design and pre-styled components.
+### Backend
+  - **Python:** The main programming language used for backend development.
+  - **Django:** A high-level Python web framework that encourages rapid development and clean, pragmatic design.
+  - **Django REST Framework:** For building RESTful APIs.
+### Database
+  - **SQLite:** The default database used for development and testing
+  - **PostgreSQL:** Used in production..
+### Version Control
+ - **GitHub:** For hosting the code repository and facilitating collaboration.
+### Deployment
+  - ***Heroku:** For deploying the web application in a scalable and reliable manner.
+  - **Gunicorn:** A Python WSGI HTTP Server for running the application on Heroku.
+### Additional Tools and Libraries
+  - **Crispy Forms:** For enhancing the rendering of Django forms.
+  - **Cloudinary:** For managing media files like images.
+  - **Font Awesome:** For scalable vector icons.
+  - **Moment.js:** For parsing, validating, manipulating, and displaying dates and times in JavaScript.
+
+
 ## Development
+This application was develop in Code Institute Gitpod, hosted in GitHub and deployed in Heroku.
 ## Deployment on Heroku
+The site was deployed via Heroku.
+### Project Deployment
+To deploy the project through Heroku:
+- Login to Heroku
+- Create a new Heroku application by going to the Dashboard and select New and Create New App
+- Give your app a name (pp4-techtackles-by-hc) and choose the region nearest to you (Europe). This will create an app in Heroku and will redirect you to the Deploy tab.
+- On the Deploy tab, connect your Github and search for your repository.
+- Manually deploy the main branch of this GitHub repo.
+- On the Resources tab, ensure eco-dyno is enabled and delete any Postgres database Add-on.
+- Add the KEY - DISABLE_COLLECTSTATIC with the Value - 1 to the config vars, this must be removed before final deployment.
+- Add the database to the app by going to Settings tab, under Config vars add the following:
+  Key= Database_URL
+  Value = your postgres url
+- In your Django app, make sure you install gunicorn~=20.1 and freeze it to the requirements.txt file.
+- Create a new file env.py on the root directory and import the os library and set the environment variable for the DATABASE_URL the same as your settings in Heroku.
+- Add SECRET_KEY using the os.environ in the env.py and add the same SECRET_KEY on the settings tab in Heroku under Config vars
+- In the settings.py file within the django app, import Path from pathlib, import os and import dj_database_url
+- Insert the line if os.path.isfile("env.py"): import env
+- Update the default SECRET_KEY that Django has on settings.py and replace it with SECRET_KEY = os.environ.get('SECRET_KEY')
+- On settings.py, replace the database section with DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
+- Settings.py file - add the STATIC files settings - the url, storage path, directory path, root path, media url and default file storage path.
+- Link the file to the templates directory in Heroku TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+- Change the templates directory to TEMPLATES_DIR - 'DIRS': [TEMPLATES_DIR]
+- Add Heroku to the ALLOWED_HOSTS list the format will be the app name given in Heroku when creating the app followed by .herokuapp.com
+- Create a new file on the top level directory - Procfile
+- Add web: gunicorn projectname.wsgi in Procfile.
+- During production, do add, commit and push changes to your Github repo.
+- In Heroku, under Deploy tab, click Deploy Branch.
+- Watch out for any errors.
+- Heroku will now build the app for you. Once it has completed the build process you will see a 'Your App Was Successfully Deployed' message and a link to the app to visit the live site.
+
+### Forking your repository
+To fork a repository on GitHub, follow these steps:
+
+1. Navigate to the Repository: Go to the GitHub repository you want to fork. You can do this by entering the repository URL in your browser or by searching for the repository on GitHub.
+
+2. Find the "Fork" Button: On the repository page, you'll see a button labeled "Fork" in the top right corner of the page, next to the "Star" and "Watch" buttons. Click on the "Fork" button.
+
+3. Choose where to Fork: GitHub will prompt you to choose where you want to fork the repository. You can fork it to your personal GitHub account or to any organizations you're a member of. Select the desired location.
+
+4. Wait for the Fork to Complete: GitHub will create a copy of the repository in your account or organization. Depending on the size of the repository and the current server load, this process may take a few moments.
+
+5. Access Your Forked Repository: Once the forking process is complete, you'll be redirected to your forked copy of the repository. You can now clone the repository to your local machine, make changes, and push them to your fork.
+
+6. Keep Your Fork Synced: If you forked a repository to contribute changes back to the original repository, you may want to keep your fork up-to-date with the original repository. You can do this by configuring an "upstream" remote and pulling changes from it periodically.
+
+That's it! You've successfully forked a repository on GitHub. You can now start working with the code in your fork, making changes, and contributing back to the original repository through pull requests.
+
+### Clone Repository
+Cloning a repository from GitHub allows you to copy a remote repository to your local machine. To clone a repository from GitHub to your local machine, follow these steps:
+
+1. Find the Repository: Go to the GitHub repository you want to clone. You can do this by entering the repository URL in your browser or by searching for the repository on GitHub.
+
+2. Copy the Repository URL: On the repository page, click on the "Code" button. This will reveal a URL for the repository. Click on the clipboard icon to copy the URL to your clipboard.
+
+3. Open Terminal (or Command Prompt): Open your terminal or command prompt on your local machine. You can usually find it in your applications or by searching for "Terminal" (on macOS and Linux) or "Command Prompt" (on Windows).
+
+4. Navigate to the Directory Where You Want to Clone the Repository: Use the cd command to navigate to the directory where you want to clone the repository. For example, if you want to clone the repository into a folder named "projects" in your home directory, you would use the following command:
+
+        cd ~/projects
+
+5. Clone the Repository: Once you're in the directory where you want to clone the repository, use the git clone command followed by the repository URL you copied earlier. For example, if the repository URL is https://github.com/username/repository.git, you would use the following command:
+
+        git clone https://github.com/username/repository.git
+6. Enter Your GitHub Credentials (if prompted): If the repository is private and requires authentication, you may be prompted to enter your GitHub username and password or personal access token.
+
+7. Wait for the Cloning Process to Complete: Git will clone the repository from GitHub to your local machine. Depending on the size of the repository and your internet connection speed, this process may take some time.
+
+8. Access the Cloned Repository: Once the cloning process is complete, you'll have a local copy of the repository on your machine. You can navigate into the repository directory using the cd command and start working with the files.
+
+That's it! You've successfully cloned a repository from GitHub to your local machine. You can now make changes to the files, commit them, and push them back to the repository on GitHub if you have write access.
+
 ## Credits
+
+I used the following sources to complete this project.
+
+- [W3School](https://w3schools.com) – code sources for python
+- [Stackoverflow](https://stackoverflow.com/) - for codes, tips and answers to some q&a. 
+- [Eightshades Contrast Grid]() - checked the colour combination contrast
+- [Adobe Color](https://color.adobe.com) - created my palette by entering colors used on my website.
+- [Adobe Stock Photos]() - for my background.
+- [Balsamiq](https://balsamiq.com/) - for wireframes
+- [ChatGPT](https://openai.com/) - for codes, tips,documentation advice and answers to some q&a.
+
 ## Acknowledgement

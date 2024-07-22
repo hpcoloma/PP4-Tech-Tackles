@@ -1,0 +1,13 @@
+-   User Story Testing
+  - Automated testing
+  - CI Python Linter – 
+  - Lighthouse
+  - Mobile
+  - Desktop
+  - W3C CSS Validator
+  - W3C HTML validator
+  - JSHint for Javascript
+  - Other Testing
+    - Functionality Testing
+    - Compatibility Testing – different devices
+    - Crossbrowser testing

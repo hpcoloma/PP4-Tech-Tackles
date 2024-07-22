@@ -13,7 +13,16 @@
   - [The Skeleton Plane](#the-skeleton-plane)
   - [The Structure Plane](#the-structure-plane)
   - [The Surface Plane](#the-surface-plane)
-
+- [Features](#features)
+- [Future Enhancements](#future-enhancements)
+- [Testing](#testing)
+- [Agile Development](#agile-development)
+- [Bugs and Potential Issue](#bugs-and-potential-issues)
+- [Technologies and Languages used](#technologies-and-language)
+- [Developement](#development)
+- [Deployment on Heroku](#deployment)
+- [Credits](#credits)
+- [Acknowdledgements](#acknowledgement)
 
 
 ## Project Introduction

@@ -4,7 +4,7 @@
 
 # Table of Contents
 - [Project Introduction](#project-introduction)
-  - [Tech Tackles](#screenshot)
+  - [Tech Tackles](#tech-tackles--it-support-ticketing-system)
   - [Link to Live Project](#link-to-live-project)
   - [Objective](#objective)
 - [UX/UI Design](#uxui)
@@ -38,7 +38,7 @@ The project will include front-end development with HTML, CSS, and JavaScript, a
 ### [Link to Live project](https://pp4-techtackles-by-hc-ed362e72006b.herokuapp.com/)
 
 ### Objective
-The objective of this project is to develop a comprehensive IT asset management application to assist IT administrators in efficiently managing their IT assets. This application will be designed using a combination of front-end and back-end technologies, including HTML, CSS, JavaScript, Python, and Django
+The primary objective of Tech Tackles IT Support Ticketing System is to streamline and enhance the process of managing IT support requests within an organization. This system aims to provide a user-friendly platform that facilitates efficient communication between users and the IT support team. This application will be designed using a combination of front-end and back-end technologies, including HTML, CSS, JavaScript, Python, and Django
 
 ## UX/UI Design
 ### The Strategy Plane
@@ -140,6 +140,15 @@ To create a user-friendly application that is designed to streamline and simplif
 #### USER STORIES
 
 Tech Tackles project uses a [Kanban Board](https://github.com/users/hpcoloma/projects/10) to manage and track progress throughout the development cycle. The Kanban board visualizes work stages, from initial backlog through to completed tasks, facilitating efficient task management and smooth workflow. This approach allows me to prioritize tasks, track progress, and ensure that all features and improvements are delivered in a timely manner.
+
+- **MoSCoW Prioritization**
+
+  In managing the development of Tech Tackles, the MoSCoW method is utilized to prioritize features and tasks. This method categorizes tasks into four groups:
+
+  - **Must Have:** Critical features that are essential for the system's functionality and must be implemented.
+  - **Should Have:** Important features that are not critical but add significant value to the system.
+  - **Could Have:** Features that are desirable but not essential and can be included if time and resources permit.
+  - **Won't Have:** Features that are not a priority for the current development cycle but may be considered for future iterations.
 
 - **As a User:**
   - I want to register for an account so that I can submit and track support tickets.
